@@ -1,0 +1,9 @@
+{
+  "name": "@fp/scheduler",
+  "version": "1.0.1",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "test": "echo scheduler with version: $npm_package_version"
+  }
+}
