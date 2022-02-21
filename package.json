@@ -1,0 +1,28 @@
+{
+  "name": "transport-logistics",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/university-works/transport-logistics.git",
+  "author": "RV8V <rv.volovik88@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "test:all-packages": "lerna run test --scope={@fp/server,@fp/scheduler}",
+    "new-version": "lerna version --conventional-commits --yes --no-push",
+    "diff": "lerna diff",
+    "format": "prettier --write \"packages/**/*.js\"",
+    "lint": "eslint \"packages/**/*.js\" --fix"
+  },
+  "devDependencies": {
+    "eslint": "^8.9.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.4.0",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-prettier": "^4.0.0",
+    "lerna": "^4.0.0",
+    "prettier": "^2.5.1"
+  }
+}
