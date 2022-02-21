@@ -1,5 +1,5 @@
 const scheduler = require('@fp/scheduler');
 
-const getMessage = (message) => message;
+const getMessage = ({ message, type }) => ({ message, type });
 
-console.dir({ common: getMessage(scheduler().message) });
+console.log({ common: getMessage(scheduler()) });
