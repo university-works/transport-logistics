@@ -7,6 +7,6 @@
     "test": "echo server with version: $npm_package_version"
   },
   "dependencies": {
-    "@fp/scheduler": "^1.0.1"
+    "@fp/common": "1.0.0"
   }
 }
