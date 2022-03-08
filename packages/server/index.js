@@ -1,5 +1,3 @@
-const scheduler = require('@fp/scheduler');
+const fn = require('@fp/common');
 
-const getMessage = ({ message, type }) => ({ message, type });
-
-console.log({ common: getMessage(scheduler()) });
+console.log({ fn: fn('from server') });

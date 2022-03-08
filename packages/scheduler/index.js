@@ -1,4 +1,3 @@
-module.exports = () => ({
-  type: 'commonjs',
-  message: 'hello from scheduler',
-});
+const fn = require('@fp/common');
+
+console.log({ fn: fn('from scheduler') });

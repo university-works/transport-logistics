@@ -1,9 +1,12 @@
 {
   "name": "@fp/scheduler",
-  "version": "1.0.1",
+  "version": "1.2.0",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
     "test": "echo scheduler with version: $npm_package_version"
+  },
+  "dependencies": {
+    "@fp/common": "^1.2.0"
   }
 }
