@@ -5,5 +5,9 @@
   "license": "MIT",
   "scripts": {
     "test": "echo common with version: $npm_package_version"
+  },
+  "dependencies": {
+    "ramda": "^0.28.0",
+    "ramda-fantasy": "^0.8.0"
   }
 }
