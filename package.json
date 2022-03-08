@@ -13,7 +13,7 @@
     "node": ">=12.x"
   },
   "scripts": {
-    "test:all-packages": "lerna run test --scope={@fp/server,@fp/scheduler}",
+    "test:all-packages": "lerna run test --scope={@fp/server,@fp/scheduler,@fp/common}",
     "new-version": "lerna version --conventional-commits --yes --no-push",
     "diff": "lerna diff",
     "format": "prettier --write \"packages/**/*.js\"",
