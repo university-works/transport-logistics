@@ -5,5 +5,8 @@
   "license": "MIT",
   "scripts": {
     "test": "echo scheduler with version: $npm_package_version"
+  },
+  "dependencies": {
+    "@fp/common": "1.0.0"
   }
 }
