@@ -23,17 +23,17 @@ const {
 const {
   cacheFuture,
   futurifyWithEither,
-} = require('./internal/natural-transformations/cast-scalar-to-type/to-future');
+} = require('../src/internal/natural-transformations/cast-scalar-to-type/to-future');
 
-const safeParse = require('./safe-parse');
+const safeParse = require('../src/safe-parse');
 
-const eitherToFuture = require('./internal/natural-transformations/convertation-between-algebraic-types/either-to-future');
+const eitherToFuture = require('../src/internal/natural-transformations/convertation-between-algebraic-types/either-to-future');
 
 const {
   toEither,
-} = require('./internal/natural-transformations/cast-scalar-to-type/to-ramda-either');
+} = require('../src/internal/natural-transformations/cast-scalar-to-type/to-ramda-either');
 
-const constant = require('./constant');
+const constant = require('../src/constant');
 
 /** @: toReadFileEither :: Path Encoding -> Future Error Either Right */
 const toReadFileEither = futurifyWithEither(fs.readFile);
