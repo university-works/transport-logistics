@@ -2,6 +2,17 @@
  * @const either = right || left;
  */
 
+/** @Error Handling */
+
+/**
+ * @Left behaves like a teenager, he ignores our attempts to make him work with map.
+ * @And Right will work exactly like Container (a.k.a Identity).
+ *
+ * @The power lies in being able to put the error message inside Left
+ * @We can also use Maybe.Nothing to handle errors in programms,
+ * @but it will be not informative. Because we can have many errors
+ */
+
 const right = (x) => ({
   map: (f) => right(f(x)),
   inspect: () => `right(${x})`,

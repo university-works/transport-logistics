@@ -7,6 +7,16 @@
  * @apply multiple args to a function in a generic way(liftN)
  */
 
+/**
+ * @Applicative Functor
+ *
+ * Just (+3) <*> Just 2 == Just 5
+ * > (+) <$> (Just 5)
+ * Just (+5)
+ * > Just (+5) <*> (Just 3)
+ * Just 8
+ */
+
 const liftA2 = (f, fx, fy) => fx.map(f).ap(fy);
 const liftA3 = (f, fx, fy, fz) => fx.map(f).ap(fy).ap(fz);
 

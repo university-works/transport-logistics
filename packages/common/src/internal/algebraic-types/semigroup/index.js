@@ -10,10 +10,12 @@ const all = require('./all');
 const first = require('./first');
 const sum = require('./sum');
 const intersection = require('./intersection');
+const reverse = require('./reverse');
 
 module.exports = {
   all,
   first,
   sum,
   intersection,
+  reverse,
 };

@@ -3,9 +3,9 @@ const { curry } = require('ramda');
 /** @: toEither :: Left Right -> String -> Value -> Either Error Value */
 const toEither = (left, right) =>
   curry((errMessage, value) => {
-  if (value) return right(value);
-  return left(errMessage);
-});
+    if (value) return right(value);
+    return left(errMessage);
+  });
 
 /** @: toEitherSafe :: Left Right -> (a -> b) -> ...a -> Either Error b */
 const toEitherSafe =
