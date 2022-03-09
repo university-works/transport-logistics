@@ -1,8 +1,19 @@
-const { Maybe } = require('ramda-fantasy');
-const { compose, construct, curry, identity } = require('ramda');
+const { compose, curry, prop } = require('ramda');
 
-const maybe = compose(construct(Maybe), identity);
+const {
+  toEither,
+} = require('./internal/natural-transformations/cast-scalar-to-type/to-ramda-either');
 
-const safeProp = curry((field, o) => maybe(o[field]));
+const {
+  maybe,
+} = require('./internal/natural-transformations/cast-scalar-to-type/to-maybe');
 
-module.exports = safeProp;
+/** @: safePropWithMaybe :: String -> Object -> Maybe Nothing Object[String] */
+const safePropWithMaybe = curry((field, o) => maybe(o[field]));
+
+/** @: safePropWithEither :: String -> Object -> Either Error Object[String] */
+const safePropWithEither = curry(
+  compose(toEither('field value should be not null'), prop),
+);
+
+module.exports = { safePropWithMaybe, safePropWithEither };
