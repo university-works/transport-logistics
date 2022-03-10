@@ -2,6 +2,6 @@
 const futureToPromise = (future) =>
   new Promise(
     (resolve, reject) => future.fork(reject, resolve), // eslint-disable-line
-);
+  );
 
 module.exports = futureToPromise;
