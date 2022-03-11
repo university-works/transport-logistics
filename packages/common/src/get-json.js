@@ -8,6 +8,6 @@ const eitherToFuture = require('./internal/natural-transformations/convertation-
 /** @: getJson :: HttpClient -> Url -> Future Error JSON  */
 const getJson = curry((client, url) =>
   httpGet(client)(url).map(safeParse).chain(eitherToFuture),
-); //eslint-disable-line
+); // eslint-disable-line
 
 module.exports = getJson;
