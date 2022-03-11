@@ -6,7 +6,7 @@ const {
 
 /** @: wrapWithEither :: Message -> Fn -> Either Message Fn R */
 const wrapWithEither = curry((message, fn) =>
-  curry(compose(toEither(message)), fn),
+  curry(compose(toEither(message), fn)),
 );
 
 module.exports = wrapWithEither;
