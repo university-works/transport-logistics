@@ -1,16 +1,9 @@
 const assert = require('assert').strict;
-const chainWithId = require('./utils/chain-with-id');
-const wrapWithEither = require('./utils/wrap-with-either');
 
 const constructMessageWithObjectProperty = require('../src/constr-msg-with-o-prop');
 
 describe('construct message with object property fn to construct message based on object property', () => {
   const message = 'passed value in null or undefined';
-
-  const eitherConstr = wrapWithEither(
-    message,
-    constructMessageWithObjectProperty,
-  );
 
   const object = {
     field: 'from constructor test',
@@ -29,10 +22,18 @@ describe('construct message with object property fn to construct message based o
   });
 
   describe('failed way from construct function with either left inside', () => {
-    const selectValueFromEither = chainWithId(eitherConstr);
+    it('should return eitherConstant message because of nullable value type', (done) => {
+      const onFail =
+        'undefined does not have a method named "concat" or "fantasy-land/concat"';
 
-    it('should return eitherConstant message because of nullable value type', () => {
-      assert.strictEqual(message, selectValueFromEither(object.notProp).value);
+      Promise.resolve()
+        .then(() =>
+          constructMessageWithObjectProperty(object.notProp, message)(object),
+        )
+        .catch((err) => {
+          assert.strictEqual(err.message, onFail);
+          done();
+        });
     });
   });
 });
