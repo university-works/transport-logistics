@@ -2,8 +2,8 @@ const assert = require('assert').strict;
 
 const stringify = require('../src/safe-stringify');
 
-describe('stringify input value type', () => {
-  describe('success way from stringify function with either right inside', () => {
+describe('[stringify input value type]', () => {
+  describe('> success way from stringify function with either right inside', () => {
     it('should return stringify value for input value type', () => {
       const json = [1, 2, 3];
       const toCompare = '[1,2,3]';
@@ -11,7 +11,7 @@ describe('stringify input value type', () => {
     });
   });
 
-  describe('failde way from parse function with maybe noting inside', () => {
+  describe('> failde way from parse function with maybe noting inside', () => {
     it('should return stringified value []', () => {
       const json = [];
       const toCompare = '[]';
@@ -37,7 +37,7 @@ describe('stringify input value type', () => {
     });
   });
 
-  describe('failed way from parse function with either left inside', () => {
+  describe('> failed way from parse function with either left inside', () => {
     it('should return eitherParse message because of nullable value type', () => {
       const value = null;
       assert.notStrictEqual(value, stringify(null).value);

@@ -8,8 +8,8 @@ const {
 
 const first = require('../src/first');
 
-describe('first element in list', () => {
-  describe('success way from fist function with either right inside', () => {
+describe('[first element in list]', () => {
+  describe('> success way from fist function with either right inside', () => {
     const message = 'passed value in null or undefined';
 
     const eitherFirst = wrapWithEither(message, first);
@@ -22,11 +22,11 @@ describe('first element in list', () => {
     });
   });
 
-  describe('failed way from fist function with either left inside', () => {
+  describe('> failed way from fist function with either left inside', () => {
     const safeFirst = toEitherSafe(first);
 
     it('should return eitherFirst message because of nullable value type', () => {
-      const message = `Cannot read property '0' of null`; // eslint-disable-line
+      const message = `Cannot read properties of null (reading '0')`; // eslint-disable-line
       assert.strictEqual(message, safeFirst(null).value.message);
     });
   });

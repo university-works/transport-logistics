@@ -8,13 +8,13 @@ const {
 
 const concatUniq = require('../src/concat-uniq');
 
-describe('concat-uniq different scalar and object value types', () => {
+describe('[concat-uniq different scalar and object value types]', () => {
   const makeUnique = chainWithId(concatUniq);
 
   const onSuccess = (x) => x;
   const onFailEqual = (message) => (value) => assert.equal(value, message);
 
-  describe('success way from concat-uniq function with either right inside', () => {
+  describe('> success way from concat-uniq function with either right inside', () => {
     it('should return uniq value for numbers, not to add same value', () => {
       const set = [1, 2, 3];
       const toAppend = 1;
@@ -28,7 +28,7 @@ describe('concat-uniq different scalar and object value types', () => {
     });
   });
 
-  describe('success way from concat-uniq function with either right inside', () => {
+  describe('> success way from concat-uniq function with either right inside', () => {
     const eitherContractMessage =
       'TypeError: invalid type given to Either.either';
 

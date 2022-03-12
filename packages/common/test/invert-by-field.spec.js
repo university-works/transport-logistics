@@ -8,8 +8,8 @@ const {
 
 const invertByField = require('../src/invert-by-field');
 
-describe('complement to true by field fn passed property in object should not be falsy one', () => {
-  describe('success way from complement to true by field function with either right inside', () => {
+describe('[complement to true by field fn passed property in object should not be falsy one]', () => {
+  describe('> success way from complement to true by field function with either right inside', () => {
     const message = 'passed value is null or undefined';
 
     const eitherInvertByField = wrapWithEither(message, invertByField);
@@ -41,7 +41,7 @@ describe('complement to true by field fn passed property in object should not be
     });
   });
 
-  describe('failed way from complement to true by field function with either left inside', () => {
+  describe('> failed way from complement to true by field function with either left inside', () => {
     const safeInvertByField = toEitherSafe(invertByField);
 
     it('should return boolean complement value is false so wrap in left', () => {

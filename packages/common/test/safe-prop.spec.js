@@ -3,8 +3,8 @@ const chainWithId = require('./utils/chain-with-id');
 
 const { safePropWithEither: prop } = require('../src/safe-prop');
 
-describe('prop element for object', () => {
-  describe('success way from prop function with either right inside', () => {
+describe('[prop element for object]', () => {
+  describe('> success way from prop function with either right inside', () => {
     const selectValueFromEither = chainWithId(prop);
 
     it('should return prop value for object', () => {
@@ -15,7 +15,7 @@ describe('prop element for object', () => {
     });
   });
 
-  describe('failde way from prop function with maybe noting inside', () => {
+  describe('> failde way from prop function with maybe noting inside', () => {
     const message = 'field value should be not null';
 
     it('should return Either Left field value should be not null for in list', () => {
@@ -43,7 +43,7 @@ describe('prop element for object', () => {
     });
   });
 
-  describe('failed way from prop function with either left inside', () => {
+  describe('> failed way from prop function with either left inside', () => {
     it('should return eitherLast message because of nullable value type', () => {
       const message = `field value should be not null`; // eslint-disable-line
       assert.strictEqual(message, prop(null, null).value);

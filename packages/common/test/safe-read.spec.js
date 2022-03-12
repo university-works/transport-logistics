@@ -3,8 +3,8 @@ const chainWithId = require('./utils/chain-with-id');
 
 const { safeRead } = require('../src/safe-read');
 
-describe('read file with either', () => {
-  describe('success way from read function with either right inside', () => {
+describe('[read file with either]', () => {
+  describe('> success way from read function with either right inside', () => {
     const selectValueFromEither = chainWithId(safeRead);
 
     it('should return read ok', () => {
@@ -14,7 +14,7 @@ describe('read file with either', () => {
     });
   });
 
-  describe('failde way from read function with either left inside', () => {
+  describe('> failde way from read function with either left inside', () => {
     it('should return Either Left EISDIR: illegal operation on a directory, read', () => {
       const message = 'EISDIR: illegal operation on a directory, read';
       const path = './';
@@ -43,7 +43,7 @@ describe('read file with either', () => {
     });
   });
 
-  describe('failed way from read function with either left inside', () => {
+  describe('> failed way from read function with either left inside', () => {
     it('should return either read message because of nullable value type', () => {
       const message =
         'The "path" argument must be of type string or an instance of Buffer or URL. Received null';
