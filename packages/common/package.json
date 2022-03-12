@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "log": "echo common with version: $npm_package_version",
-    "test": "mocha"
+    "test": "mocha \"test/**/*.spec.js\""
   },
   "dependencies": {
     "ramda": "^0.28.0",

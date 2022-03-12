@@ -1,5 +1,4 @@
 const assert = require('assert').strict;
-const chainWithId = require('./utils/chain-with-id');
 
 const {
   toEitherSafe,
@@ -7,8 +6,8 @@ const {
 
 const nth = require('../src/safe-nth');
 
-describe('nth element in list', () => {
-  describe('success way from last function with either right inside', () => {
+describe('[nth element in list]', () => {
+  describe('> success way from last function with either right inside', () => {
     it('should return nth value for element in list', () => {
       const list = [1, 2, 3];
       const index = 1;
@@ -17,7 +16,7 @@ describe('nth element in list', () => {
     });
   });
 
-  describe('failde way from nth function with maybe noting inside', () => {
+  describe('> failde way from nth function with maybe noting inside', () => {
     it('should return Noting {} for in list', () => {
       const list = [];
       const index = 11;
@@ -47,11 +46,11 @@ describe('nth element in list', () => {
     });
   });
 
-  describe('failed way from nth function with either left inside', () => {
+  describe('> failed way from nth function with either left inside', () => {
     const safeNth = toEitherSafe(nth);
 
     it('should return eitherLast message because of nullable value type', () => {
-      const message = `Cannot read property 'null' of null`; // eslint-disable-line
+      const message = `Cannot read properties of null (reading 'null')`; // eslint-disable-line
       const ap = toEitherSafe(safeNth(null).value);
       assert.strictEqual(message, ap(null).value.message);
     });

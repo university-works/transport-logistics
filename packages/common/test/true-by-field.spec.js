@@ -8,8 +8,8 @@ const {
 
 const trueByField = require('../src/true-by-field');
 
-describe('true by field fn passed property in object should not be falsy one', () => {
-  describe('success way from true by field function with either right inside', () => {
+describe('[true by field fn passed property in object should not be falsy one]', () => {
+  describe('> success way from true by field function with either right inside', () => {
     const message = 'passed value is null or undefined';
 
     const eitherTrueByField = wrapWithEither(message, trueByField);
@@ -40,7 +40,7 @@ describe('true by field fn passed property in object should not be falsy one', (
     });
   });
 
-  describe('failed way from true by field function with either left inside', () => {
+  describe('> failed way from true by field function with either left inside', () => {
     const safeTrueByField = toEitherSafe(trueByField);
 
     it('should return boolean value is false so wrap in left', () => {

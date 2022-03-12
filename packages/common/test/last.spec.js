@@ -8,8 +8,8 @@ const {
 
 const last = require('../src/last');
 
-describe('last element in list', () => {
-  describe('success way from last function with either right inside', () => {
+describe('[last element in list]', () => {
+  describe('> success way from last function with either right inside', () => {
     const message = 'passed value in null or undefined';
 
     const eitherLast = wrapWithEither(message, last);
@@ -28,11 +28,11 @@ describe('last element in list', () => {
     });
   });
 
-  describe('failed way from last function with either left inside', () => {
+  describe('> failed way from last function with either left inside', () => {
     const safeLast = toEitherSafe(last);
 
     it('should return eitherLast message because of nullable value type', () => {
-      const message = `Cannot read property 'fantasy-land/map' of null`; // eslint-disable-line
+      const message = `Cannot read properties of null (reading 'fantasy-land/map')`; // eslint-disable-line
       assert.strictEqual(message, safeLast(null).value.message);
     });
   });

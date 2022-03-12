@@ -8,13 +8,13 @@ const {
 
 const appendUnique = require('../src/append-unique');
 
-describe('append-uniq different scalar and object value types', () => {
+describe('[append-uniq different scalar and object value types]', () => {
   const makeUniq = chainWithId(appendUnique);
 
   const onSuccess = (x) => x;
   const onFailEqual = (message) => (value) => assert.equal(value, message);
 
-  describe('success way from append-uniq function with either right inside', () => {
+  describe('> success way from append-uniq function with either right inside', () => {
     it('should return uniq value for validation errors in log', () => {
       const log = {};
 
@@ -33,7 +33,7 @@ describe('append-uniq different scalar and object value types', () => {
     });
   });
 
-  describe('success way from append-uniq function with either right inside', () => {
+  describe('> success way from append-uniq function with either right inside', () => {
     const eitherContractMessage =
       'TypeError: invalid type given to Either.either';
 

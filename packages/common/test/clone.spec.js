@@ -8,13 +8,13 @@ const {
 
 const clone = require('../src/clone');
 
-describe('clone different scalar and object value types', () => {
+describe('[clone different scalar and object value types]', () => {
   const makeClone = chainWithId(clone);
 
   const onSuccess = (x) => x;
   const onFailEqual = (message) => (value) => assert.equal(value, message);
 
-  describe('success way from clone function with either right inside', () => {
+  describe('> success way from clone function with either right inside', () => {
     const onFailIncludes = (message) => (value) =>
       assert.equal(true, value.includes(message));
 
@@ -43,7 +43,7 @@ describe('clone different scalar and object value types', () => {
     });
   });
 
-  describe('success way from clone function with either right inside', () => {
+  describe('> success way from clone function with either right inside', () => {
     const eitherContractMessage =
       'TypeError: invalid type given to Either.either';
 

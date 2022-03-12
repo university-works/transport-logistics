@@ -8,8 +8,8 @@ const {
 
 const headEqualsGreatest = require('../src/head-equals-greatest');
 
-describe('head in list should be greatest value', () => {
-  describe('success way from head equals greatest function with either right inside', () => {
+describe('[head in list should be greatest value]', () => {
+  describe('> success way from head equals greatest function with either right inside', () => {
     const message = 'passed value is null or undefined';
 
     const eitherHead = wrapWithEither(message, headEqualsGreatest);
@@ -33,11 +33,11 @@ describe('head in list should be greatest value', () => {
     });
   });
 
-  describe('failed way from head first is greatest one function with either left inside', () => {
+  describe('> failed way from head first is greatest one function with either left inside', () => {
     const safeHead = toEitherSafe(headEqualsGreatest);
 
     it('should return boolean value is false so wrap in left', () => {
-      const message = `Cannot read property '0' of null`; // eslint-disable-line
+      const message = `Cannot read properties of null (reading '0')`; // eslint-disable-line
       assert.strictEqual(message, safeHead(null).value.message);
     });
   });
