@@ -10,4 +10,4 @@
 
 const lazyFunctor = require('./delay-evaluation-with-lazy-functor');
 
-module.exports = lazyFunctor;
+module.exports = { lazyFunctor };

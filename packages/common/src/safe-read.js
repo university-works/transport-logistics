@@ -19,4 +19,4 @@ const getEncoding = compose(toEitherSafe, toEncoding);
 /** @: readEither :: File -> Either Left Right File Content */
 const readEither = compose(chain(getEncoding('utf-8')), read);
 
-module.exports = { safeRead: readEither };
+module.exports = readEither;

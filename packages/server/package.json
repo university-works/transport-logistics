@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "test": "echo server with version: $npm_package_version"
+    "test": "echo server with version: $version"
   },
   "dependencies": {
     "@fp/common": "^1.2.0"
