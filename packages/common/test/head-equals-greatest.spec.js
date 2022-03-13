@@ -37,7 +37,7 @@ describe('[head in list should be greatest value]', () => {
     const safeHead = toEitherSafe(headEqualsGreatest);
 
     it('should return boolean value is false so wrap in left', () => {
-      const message = `Cannot read properties of null (reading '0')`; // eslint-disable-line
+      const message = `Cannot read property '0' of null`; // eslint-disable-line
       assert.strictEqual(message, safeHead(null).value.message);
     });
   });

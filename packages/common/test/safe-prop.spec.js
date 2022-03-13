@@ -1,7 +1,7 @@
 const assert = require('assert').strict;
 const chainWithId = require('./utils/chain-with-id');
 
-const { safePropWithEither: prop } = require('../src/safe-prop');
+const prop = require('../src/safe-prop-either');
 
 describe('[prop element for object]', () => {
   describe('> success way from prop function with either right inside', () => {

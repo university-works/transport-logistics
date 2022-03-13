@@ -26,7 +26,7 @@ describe('[first element in list]', () => {
     const safeFirst = toEitherSafe(first);
 
     it('should return eitherFirst message because of nullable value type', () => {
-      const message = `Cannot read properties of null (reading '0')`; // eslint-disable-line
+      const message = `Cannot read property '0' of null`; // eslint-disable-line
       assert.strictEqual(message, safeFirst(null).value.message);
     });
   });
