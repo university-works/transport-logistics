@@ -1,7 +1,7 @@
 const assert = require('assert').strict;
 const chainWithId = require('./utils/chain-with-id');
 
-const { safeRead } = require('../src/safe-read');
+const safeRead = require('../src/safe-read');
 
 describe('[read file with either]', () => {
   describe('> success way from read function with either right inside', () => {

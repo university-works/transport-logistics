@@ -1,3 +1,3 @@
-const fn = require('@fp/common');
+const common = require('@fp/common');
 
-console.log({ fn: fn('from server') });
+console.log({ keys: Object.keys(common) });

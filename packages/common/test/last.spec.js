@@ -32,7 +32,7 @@ describe('[last element in list]', () => {
     const safeLast = toEitherSafe(last);
 
     it('should return eitherLast message because of nullable value type', () => {
-      const message = `Cannot read properties of null (reading 'fantasy-land/map')`; // eslint-disable-line
+      const message = `Cannot read property 'fantasy-land/map' of null`; // eslint-disable-line
       assert.strictEqual(message, safeLast(null).value.message);
     });
   });

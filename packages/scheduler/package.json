@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "test": "echo scheduler with version: $npm_package_version"
+    "test": "echo scheduler with version: $version"
   },
   "dependencies": {
     "@fp/common": "^1.2.0"

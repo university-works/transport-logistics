@@ -50,7 +50,7 @@ describe('[nth element in list]', () => {
     const safeNth = toEitherSafe(nth);
 
     it('should return eitherLast message because of nullable value type', () => {
-      const message = `Cannot read properties of null (reading 'null')`; // eslint-disable-line
+      const message = `Cannot read property 'null' of null`; // eslint-disable-line
       const ap = toEitherSafe(safeNth(null).value);
       assert.strictEqual(message, ap(null).value.message);
     });

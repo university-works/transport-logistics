@@ -15,4 +15,4 @@
 
 const identity = require('./linear-flow-with-container-style-types');
 
-module.exports = identity;
+module.exports = { identity };

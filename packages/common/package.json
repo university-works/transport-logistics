@@ -1,10 +1,10 @@
 {
   "name": "@fp/common",
   "version": "1.2.0",
-  "main": "index.js",
+  "main": "./src/index.js",
   "license": "MIT",
   "scripts": {
-    "log": "echo common with version: $npm_package_version",
+    "log": "echo common with version: $version",
     "test": "mocha \"test/**/*.spec.js\""
   },
   "dependencies": {
