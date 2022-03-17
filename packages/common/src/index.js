@@ -46,69 +46,18 @@ const safePropWithMaybe = require('./safe-prop-maybe');
 const safePropWithEither = require('./safe-prop-either');
 const safeRead = require('./safe-read');
 
-const { identity } = require('./internal/algebraic-types/identity/index');
+const id = require('./internal/algebraic-types/identity/index');
+const ap = require('./internal/algebraic-types/applicative/index');
+const either = require('./internal/algebraic-types/either/index');
+const lazy = require('./internal/algebraic-types/lazy-functor/index');
 
-const {
-  liftA2,
-  liftA3,
-} = require('./internal/algebraic-types/applicative/index');
+const monoid = require('./internal/algebraic-types/monoid/index');
+const semigroup = require('./internal/algebraic-types/semigroup/index');
+const iso = require('./internal/isomorphism/index');
+const cast = require('./internal/natural-transformations/cast-scalar-to-type/index');
+const convert = require('./internal/natural-transformations/convertation-between-algebraic-types/index');
 
-const {
-  eitherFold,
-  eitherUnified,
-} = require('./internal/algebraic-types/either/index');
-
-const {
-  lazyFunctor,
-} = require('./internal/algebraic-types/lazy-functor/index');
-
-const {
-  sum: sumS,
-  all: allS,
-  reverse: reverseS,
-} = require('./internal/algebraic-types/monoid/index');
-
-const {
-  all: allM,
-  first: firstM,
-  sum: sumM,
-  intersection: intersectionM,
-  reverse: reverseM,
-} = require('./internal/algebraic-types/semigroup/index');
-
-const { iso } = require('./internal/isomorphism/index');
-
-const {
-  io,
-  toIO,
-  toMaybe,
-  maybe,
-  toEither,
-  toEitherSafe,
-  either,
-  futurify,
-  toFuture,
-  futurifyWithEither,
-  cacheFuture,
-  toId,
-} = require('./internal/natural-transformations/cast-scalar-to-type/index');
-
-const {
-  promiseToFuture,
-  promiseToFutureWithParams,
-  arrayToMaybe,
-  eitherToFuture,
-  eitherToMaybe,
-  futureToPromise,
-  idToFuture,
-  idToIO,
-  idToMaybe,
-  ioToFuture,
-  maybeToEither,
-  maybeToFuture,
-} = require('./internal/natural-transformations/convertation-between-algebraic-types/index');
-
-module.exports = {
+const fns = {
   appendUniq,
   avg,
   clone,
@@ -135,43 +84,17 @@ module.exports = {
   safePropWithEither,
   safePropWithMaybe,
   safeRead,
-  identity,
-  liftA2,
-  liftA3,
-  eitherFold,
-  eitherUnified,
-  lazyFunctor,
-  sumS,
-  allS,
-  reverseS,
-  allM,
-  firstM,
-  sumM,
-  intersectionM,
-  reverseM,
+};
+
+module.exports = {
+  semigroup,
+  monoid,
   iso,
-  io,
-  toIO,
-  toMaybe,
-  maybe,
-  toEither,
-  toEitherSafe,
+  lazy,
   either,
-  futurify,
-  toFuture,
-  futurifyWithEither,
-  cacheFuture,
-  toId,
-  promiseToFuture,
-  promiseToFutureWithParams,
-  arrayToMaybe,
-  eitherToFuture,
-  eitherToMaybe,
-  futureToPromise,
-  idToFuture,
-  idToIO,
-  idToMaybe,
-  ioToFuture,
-  maybeToEither,
-  maybeToFuture,
+  ap,
+  id,
+  cast,
+  convert,
+  fns,
 };
