@@ -19,4 +19,16 @@ const toEitherSafe =
     }
   };
 
-module.exports = { toEither, toEitherSafe };
+/** @: toEitherSafeWithDefault :: Left Right -> Message -> (a -> b) -> ...a -> Either Error Message b */
+const toEitherSafeWithDefault =
+  (left, right) =>
+  (onFail, f) =>
+  (...value) => {
+    try {
+      return right(f(...value));
+    } catch (err) {
+      return left({ onFail, err });
+    }
+  };
+
+module.exports = { toEither, toEitherSafe, toEitherSafeWithDefault };
