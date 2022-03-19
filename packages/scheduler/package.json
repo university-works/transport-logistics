@@ -3,10 +3,31 @@
   "version": "1.2.0",
   "main": "index.js",
   "license": "MIT",
+  "description": "Backend Scheduler",
+  "engines": {
+    "node": ">=14.16.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/university-works/transport-logistics"
+  },
+  "homepage": "https://github.com/university-works/transport-logistics#readme",
   "scripts": {
-    "test": "echo scheduler with version: $version"
+    "log": "echo scheduler with version: $version",
+    "start:dev": "NODE_ENV=development nodemon server.js",
+    "start:prod": "NODE_ENV=production node server.js"
   },
   "dependencies": {
-    "@fp/common": "^1.2.0"
+    "@fp/common": "^1.2.0",
+    "amqplib": "^0.8.0",
+    "cron": "^1.8.2",
+    "dotenv": "^16.0.0",
+    "nodemon": "^2.0.15",
+    "pino": "^7.9.0",
+    "ramda": "^0.28.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15",
+    "pino-pretty": "^7.5.4"
   }
 }

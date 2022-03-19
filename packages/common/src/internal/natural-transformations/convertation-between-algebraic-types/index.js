@@ -17,6 +17,10 @@ const idToMaybe = require('./id-to-maybe');
 const ioToFuture = require('./io-to-future');
 const maybeToEither = require('./maybe-to-either');
 const maybeToFuture = require('./maybe-to-future');
+const {
+  wrapEitherInPromise,
+  promiseToEither,
+} = require('./wrap-either-in-promise');
 
 module.exports = {
   promiseToFuture,
@@ -31,4 +35,6 @@ module.exports = {
   ioToFuture,
   maybeToEither,
   maybeToFuture,
+  wrapEitherInPromise,
+  promiseToEither,
 };

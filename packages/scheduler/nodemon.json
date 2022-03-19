@@ -1,0 +1,8 @@
+{
+  "restartable": "rs",
+  "ignore": [".git", "node_modules/*", "logs/*", "db/snapshot/*"],
+  "env": {
+    "NODE_ENV": "development"
+  },
+  "ext": "js,cjs,json,env"
+}

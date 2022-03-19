@@ -17,6 +17,11 @@
     "fantasy-land"
   ],
   "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/university-works/transport-logistics"
+  },
+  "homepage": "https://github.com/university-works/transport-logistics#readme",
   "scripts": {
     "log": "echo common with version: $version",
     "test": "mocha \"test/**/*.spec.js\""

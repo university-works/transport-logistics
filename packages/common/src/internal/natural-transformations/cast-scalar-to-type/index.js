@@ -4,7 +4,14 @@
 
 const { io, toIO } = require('./to-io');
 const { toMaybe, maybe } = require('./to-maybe');
-const { toEither, either, toEitherSafe } = require('./to-ramda-either');
+const {
+  toEither,
+  either,
+  toEitherSafe,
+  toEitherSafeWithDefault,
+  left,
+} = require('./to-ramda-either');
+
 const {
   futurify,
   toFuture,
@@ -21,6 +28,8 @@ module.exports = {
   maybe,
   toEither,
   toEitherSafe,
+  toEitherSafeWithDefault,
+  left,
   either,
   futurify,
   toFuture,

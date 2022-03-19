@@ -2,7 +2,6 @@
   "name": "transport-logistics",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "https://github.com/university-works/transport-logistics.git",
   "author": "RV8V <rv.volovik88@gmail.com>",
   "license": "MIT",
   "private": true,
@@ -12,6 +11,11 @@
   "engines": {
     "node": ">=12.x"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/university-works/transport-logistics"
+  },
+  "homepage": "https://github.com/university-works/transport-logistics#readme",
   "scripts": {
     "test:all-packages": "lerna run test --scope={@fp/server,@fp/scheduler,@fp/common}",
     "new-version": "lerna version --conventional-commits --yes --no-push",
