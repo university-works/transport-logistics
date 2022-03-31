@@ -1,6 +1,6 @@
 {
   "restartable": "rs",
-  "ignore": [".git", "node_modules/*", "logs/*", "db/snapshot/*"],
+  "ignore": [".git", "node_modules/*", "logs/*", "persistant/snapshot/*"],
   "env": {
     "NODE_ENV": "development"
   },
