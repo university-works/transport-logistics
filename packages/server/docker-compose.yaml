@@ -1,0 +1,10 @@
+version: '3.8'
+services:
+  postgres:
+    image: mdillon/postgis:9.2-alpine
+    ports:
+      - '5440:5432'
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
