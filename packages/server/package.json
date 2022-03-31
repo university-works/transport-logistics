@@ -4,9 +4,20 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "test": "echo server with version: $version"
+    "log": "echo server with version: $version",
+    "start:dev": "NODE_ENV=development nodemon src/server.js",
+    "start:prod": "NODE_ENV=production node src/server.js",
+    "migrate": "yarn knex migrate:latest --knexfile persistent/knexfile.js"
   },
   "dependencies": {
-    "@fp/common": "^1.2.0"
+    "@fp/common": "^1.2.0",
+    "amqplib": "^0.8.0",
+    "chance": "^1.1.8",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "knex": "^1.0.4",
+    "nodemon": "^2.0.15",
+    "pg": "^8.7.3",
+    "ramda": "^0.28.0"
   }
 }
