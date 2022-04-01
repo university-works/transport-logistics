@@ -1,5 +1,4 @@
 const {
-  converge,
   call,
   always,
   compose,
@@ -13,27 +12,24 @@ const {
   identity,
   flip,
   filter,
+  chain,
 } = require('ramda');
 
-const table = 'user_projects';
+const { applyCaptureDriver } = require('../helpers/index');
 
-const constructQuery =
-  (knex) =>
-  (name, ...fields) =>
-    knex.select(...fields).from(name);
+const table = 'user_projects';
 
 /**
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
  */
 exports.seed = async (knex) => {
-  const query = constructQuery(knex);
-  const alwQ = compose(always, query);
-  const values = call(
-    converge((...args) => args, [alwQ('users', '*'), alwQ('projects', '*')]),
-  );
+  const apDriver = applyCaptureDriver(knex);
 
-  const [users, projects] = await Promise.all(values);
+  const apUsers = apDriver('users', '*');
+  const apRoles = apDriver('projects', '*');
+
+  const [users, projects] = await Promise.all(chain(call, [apUsers, apRoles]));
   const [grant, other, ...rest] = users;
 
   const getAll = map(({ id }) => ({
@@ -68,7 +64,6 @@ exports.seed = async (knex) => {
   }));
 
   await knex(table).del();
-
   await knex(table).insert([
     ...getAll(projects),
     ...applyMap(chooseMode, other)(projects),

@@ -6,4 +6,6 @@ const TENANT_ROLE = {
   registered: 'registered',
 };
 
-module.exports = Object.values(TENANT_ROLE);
+const TENANT_ROLES = Object.values(TENANT_ROLE);
+
+module.exports = { TENANT_ROLE, TENANT_ROLES };
