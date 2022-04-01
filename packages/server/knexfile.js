@@ -1,7 +1,5 @@
 const { config } = require('./config/index');
 
-console.log({ mode: config.get('NODE_ENV') });
-
 module.exports = {
   [config.get('NODE_ENV')]: {
     client: config.get('RDBMS_CLIENT'),

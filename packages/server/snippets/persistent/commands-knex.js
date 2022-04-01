@@ -7,6 +7,7 @@ const commandsWithEnv = {
   latest: ' knex migrate:latest',
   rollback: ' knex migrate:rollback',
   migrationMake: ' knex migrate:make <name>',
+  migration: ' knex migrate:<up, down> <filename>.js',
   seedMake: ' knex seed:make <name>',
   seedRun: ' knex seed:run',
   seedOneRun: ' knex seed:run --specific=<filename>.js',
