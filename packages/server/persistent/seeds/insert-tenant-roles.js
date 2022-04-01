@@ -1,5 +1,7 @@
-const { map, always, inc, mapObjIndexed } = require('ramda');
-const { TENANT_ROLES } = require('../../consts/index');
+const { map, always } = require('ramda');
+const {
+  TENANT_ROLES_RECORD: { TENANT_ROLES },
+} = require('../../consts/index');
 
 const table = 'roles';
 const mapTenantRoles = (role) => ({ code: role });
