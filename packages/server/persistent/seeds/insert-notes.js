@@ -1,14 +1,13 @@
-const { map, prop, compose, applySpec } = require('ramda');
-const { generateUser } = require('../../fixtures/index');
+const { map, applySpec, prop, compose } = require('ramda');
+const { generateNote } = require('../../fixtures/index');
 const { createNthVector } = require('../../utils/index');
-
 const {
   applyCaptureDriver,
   getRandomValueInVector,
 } = require('../helpers/index');
 
-const vector = createNthVector(4);
-const table = 'users';
+const vector = createNthVector(10);
+const table = 'notes';
 
 /**
  * @param { import("knex").Knex } knex
@@ -16,7 +15,7 @@ const table = 'users';
  */
 exports.seed = async (knex) => {
   const fillDefault = () => ({});
-  const apUsers = compose(generateUser, fillDefault);
+  const apNotes = compose(generateNote, fillDefault);
 
   const apDriver = applyCaptureDriver(knex);
   const apContacts = apDriver('contacts', '*');
@@ -26,12 +25,10 @@ exports.seed = async (knex) => {
 
   const apply = applySpec({
     contact_id: () => overMap(contacts),
-    name: prop('name'),
-    password: prop('password'),
-    last_login: prop('last_login'),
+    note: prop('note'),
   });
 
-  const mapTable = map(compose(apply, apUsers));
+  const mapTable = map(compose(apply, apNotes));
 
   await knex(table).del();
   await knex(table).insert(mapTable(vector));
