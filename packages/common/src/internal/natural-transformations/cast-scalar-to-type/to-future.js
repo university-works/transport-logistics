@@ -1,5 +1,5 @@
 const { Future, Either } = require('ramda-fantasy');
-const { curry, compose, prop } = require('ramda');
+const { curry, compose, prop, construct } = require('ramda');
 
 /**
  * @If desired, a Future instance can be given to Future.cache
@@ -38,4 +38,13 @@ const futurifyWithEither =
 /** @: toFuture :: (field -> object) -> Future Error Object Field Value */
 const toFuture = curry(compose(futurify, prop));
 
-module.exports = { futurify, toFuture, futurifyWithEither, cacheFuture };
+/** @: future :: Value -> Future, Task Value */
+const future = Future.of;
+
+module.exports = {
+  futurify,
+  toFuture,
+  futurifyWithEither,
+  cacheFuture,
+  future,
+};

@@ -17,7 +17,9 @@
  * Just 8
  */
 
-const liftA2 = (f, fx, fy) => fx.map(f).ap(fy);
-const liftA3 = (f, fx, fy, fz) => fx.map(f).ap(fy).ap(fz);
+const { curry } = require('ramda');
+
+const liftA2 = curry((f, fx, fy) => fx.map(f).ap(fy));
+const liftA3 = curry((f, fx, fy, fz) => fx.map(f).ap(fy).ap(fz));
 
 module.exports = { liftA2, liftA3 };
