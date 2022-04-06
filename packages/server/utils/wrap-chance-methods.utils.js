@@ -36,14 +36,17 @@ const methods = [
   'date',
 ];
 
+/** @: constructVector :: string vector -> vector string length */
 const constructVector = (method) => [
   method,
   prop('length', view(lensProp(method), wrapChance)),
 ];
 
+/** @: base :: acc, vector -> hash table method */
 const base = (acc, [method, length]) =>
   set(lensProp(method), invoker(length, method), acc);
 
+/** @: wrapChanceMethods :: string vector -> hash methods */
 const wrapChanceMethods = compose(reduce(base, {}), map(constructVector));
 
 module.exports = wrapChanceMethods(methods);
