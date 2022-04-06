@@ -17,6 +17,7 @@ const {
   toFuture,
   futurifyWithEither,
   cacheFuture,
+  future,
 } = require('./to-future');
 
 const toId = require('./to-id');
@@ -35,5 +36,6 @@ module.exports = {
   toFuture,
   futurifyWithEither,
   cacheFuture,
+  future,
   toId,
 };

@@ -5,6 +5,7 @@ const { construct } = require('ramda');
 const promiseToFuture = (promise) =>
   new Future((reject, resolve) => promise.then(resolve).catch(reject));
 
+/** @: future :: Value -> Future, Task Value */
 const future = construct(Future);
 
 /** @: promiseToFutureWithParams(Future, Task) :: (a -> b) -> ...args -> Future, Task b */
