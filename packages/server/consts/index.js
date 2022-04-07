@@ -9,6 +9,7 @@ const fns = {
   'incident-types.const': 'INCIDENT_TYPES_RECORD',
   'ratings.const': 'RATINGS_RECORD',
   'statuses.const': 'STATUSES_RECORD',
+  'audit-log.const': 'AUDIT_LOG_ACTION_RECORD',
 };
 
 module.exports = requireModules(__dirname)(fns);

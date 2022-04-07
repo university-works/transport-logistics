@@ -6,6 +6,12 @@ const fns = {
   'wrap-chance.utils': 'wrapChance',
   'wrap-chance-methods.utils': 'wrapChanceMethods',
   'create-nth-vector.utils': 'createNthVector',
+  'get-or-else.utils': 'getOrElse',
+  'is-empty.utils': 'isEmpty',
+  'wrap-args.utils': 'wrapArgs',
+  'either-freeze': 'eitherFreeze',
+  'not-empty.utils': 'notEmpty',
+  'to-boolean.utils': 'toBoolean',
 };
 
 module.exports = requireModules('./')(fns);
