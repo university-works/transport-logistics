@@ -5,6 +5,8 @@ const fns = {
   'express/app-use.utils': 'appUse',
   'express/async-wrap.utils': 'asyncWrap',
   'express/ap.utils': 'ap',
+  'express/id.utils': 'id',
+  'express/either-ap.utils': 'apEither',
 };
 
 module.exports = requireModules('./')(fns);
