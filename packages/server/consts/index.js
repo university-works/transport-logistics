@@ -10,6 +10,7 @@ const fns = {
   'ratings.const': 'RATINGS_RECORD',
   'statuses.const': 'STATUSES_RECORD',
   'audit-log.const': 'AUDIT_LOG_ACTION_RECORD',
+  'allowed-methods.const': 'METHOD_RECORD',
 };
 
 module.exports = requireModules(__dirname)(fns);
