@@ -12,6 +12,10 @@ const fns = {
   'either-freeze': 'eitherFreeze',
   'not-empty.utils': 'notEmpty',
   'to-boolean.utils': 'toBoolean',
+  'columns.utils': 'columns',
+  'view.utils': 'view',
+  'map-over.utils': 'mapOver',
+  'wheater-object.utils': 'wheaterObject',
 };
 
 module.exports = requireModules('./')(fns);
