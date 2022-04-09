@@ -1,31 +1,17 @@
-const { identity } = require('ramda');
-const express = require('express');
-const userView = require('./user.view');
-
-const { universalRoute } = require('../../services/index');
+const { captureRoutesMeta } = require('../../services/index');
 const { userRepository } = require('../../repos/index');
 
-const repository = userRepository.chain(identity);
-
-const routes = universalRoute.router(repository);
-const router = express.Router();
+const userCtrl = require('./user.controller');
+const userView = require('./user.view');
 
 const key = 'user';
 
-/**
- * @router.param('id', routes.param(userView, key));
- */
+const meta = {
+  get: {
+    '/count': userCtrl.count,
+    '/log-action': userCtrl.logAction,
+  },
+  post: {},
+};
 
-router
-  .route('/')
-  .get(...routes.read(userView, key))
-  .post(...routes.create(userView));
-
-router
-  .route('/:id')
-  .get(...routes.readOne(userView, key))
-  .put(...routes.update(userView, key))
-  .patch(...routes.update(userView, key))
-  .delete(...routes.remove(userView, key));
-
-module.exports = router;
+module.exports = captureRoutesMeta(userView, userRepository, key, meta);
