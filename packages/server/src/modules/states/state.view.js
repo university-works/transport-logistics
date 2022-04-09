@@ -1,4 +1,4 @@
-const { view } = require('../../../utils/index');
+const { view } = require('../../../utils/view/index');
 
 const exclude = [];
 
