@@ -15,6 +15,8 @@ const asyncWrap = (handler) => async (req, res, next) => {
   const answer = await handler(req, res, next).catch((err) => {
     const toReturn = { path: `${req.baseUrl}${req.path}`, err };
 
+    console.log({ err });
+
     const wrapWithMaybeOk = compose(
       maybe,
       getOrElse(INTERNAL_SERVER_ERROR),

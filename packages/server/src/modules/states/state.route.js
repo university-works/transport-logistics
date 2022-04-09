@@ -12,6 +12,24 @@ const router = express.Router();
 
 const key = 'state';
 
+const stateCtrl = require('./state.controller');
+const { gatherRouters } = require('../../../utils/route/index');
+const asyncWrap = require('../../../utils/express/async-wrap.utils');
+
+const meta = {
+  get: {
+    '/count': stateCtrl.count,
+    '/log-action': stateCtrl.logAction,
+    '/log-entity': stateCtrl.logEntity,
+  },
+  post: {
+    '/test': (req, res) => res.send(req.body),
+    '/same': asyncWrap(async (req) => req.body),
+  },
+};
+
+const toGather = gatherRouters(router)(meta);
+
 router
   .route('/')
   .get(...routes.read(stateView, key))
