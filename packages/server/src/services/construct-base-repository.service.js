@@ -43,6 +43,9 @@ const baseRepository = curry((knex, schema, tableName) => {
   /** @: knx -> -> driver */
   const knx = always(knex);
 
+  /** @: getMeta -> -> table name, schema name */
+  const getMeta = always({ tableName, schema });
+
   /** @: getAll :: params -> vector records */
   const getAll = (
     { condition = {}, fields = ['*'], orderBy = [] } = {},
@@ -265,6 +268,7 @@ const baseRepository = curry((knex, schema, tableName) => {
     logEntity,
     getByIdQuery,
     streamAllData,
+    getMeta,
   };
 
   return eitherFreeze('methods can not be undefined')(methods);
