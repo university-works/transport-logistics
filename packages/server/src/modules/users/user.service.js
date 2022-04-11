@@ -8,6 +8,24 @@ const meta = {
   onCall: ['count', 'logAction'],
 };
 
-const userService = captureFieldToMap(repository)('onCall');
+// const userService = captureFieldToMap(repository)('onCall');
 
-module.exports = userService(meta);
+//
+
+const tryPost = (body) => {
+  console.log({ body });
+  return body;
+};
+
+const tryUpdate = (id, body) => {
+  console.log({ id, body });
+  return { id, body };
+};
+
+const general = captureFieldToMap(repository)('onCall');
+
+module.exports = {
+  tryPost,
+  tryUpdate,
+  ...general(meta),
+};

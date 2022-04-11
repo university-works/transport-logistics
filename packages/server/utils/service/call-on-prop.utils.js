@@ -1,6 +1,9 @@
-const { curry, compose, always, call, prop } = require('ramda');
+const { curry, compose, prop } = require('ramda');
 
-/** @: callOnProp :: prop -> obj -> call obj[prop] */
-const callOnProp = curry(compose(always, call, prop));
+/** @: toParams :: fn -> args -> fn(args) */
+const toParams = curry((fn, args) => fn(args));
+
+/** @: callOnProp :: prop -> obj -> (a -> b) -> call obj[prop], params */
+const callOnProp = curry(compose(toParams, prop));
 
 module.exports = callOnProp;
