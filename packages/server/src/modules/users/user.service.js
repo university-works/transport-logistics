@@ -1,4 +1,4 @@
-const { identity } = require('ramda');
+const { identity, curry } = require('ramda');
 const { captureFieldToMap } = require('../../../utils/service/index');
 const { userRepository } = require('../../repos/index');
 
@@ -7,10 +7,6 @@ const repository = userRepository.chain(identity);
 const meta = {
   onCall: ['count', 'logAction'],
 };
-
-// const userService = captureFieldToMap(repository)('onCall');
-
-//
 
 const tryPost = (body) => {
   console.log({ body });
@@ -22,10 +18,24 @@ const tryUpdate = (id, body) => {
   return { id, body };
 };
 
-const general = captureFieldToMap(repository)('onCall');
+const userService = (repository) => {
+  const general = captureFieldToMap(repository)('onCall');
 
-module.exports = {
-  tryPost,
-  tryUpdate,
-  ...general(meta),
+  const getByEmail = (email) => repository.getByEmail({ email });
+
+  const setCurrentRefreshTokenAndGetUser = curry((id, refresh) =>
+    repository.updateBy({
+      condition: { id },
+      data: { refresh_token: refresh },
+    }),
+  );
+
+  const methods = {
+    getByEmail,
+    setCurrentRefreshTokenAndGetUser,
+  };
+
+  return { ...general(meta), ...methods, repository };
 };
+
+module.exports = userService(repository);

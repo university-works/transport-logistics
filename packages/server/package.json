@@ -12,10 +12,12 @@
   "dependencies": {
     "@fp/common": "^1.2.0",
     "amqplib": "^0.8.0",
+    "bcrypt": "^5.0.1",
     "body-parser": "^1.20.0",
     "chance": "^1.1.8",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
+    "jsonwebtoken": "^8.5.1",
     "knex": "^1.0.4",
     "nodemon": "^2.0.15",
     "pg": "^8.7.3",

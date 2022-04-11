@@ -7,6 +7,9 @@ const { requireModules } = require('../../utils/index');
 const fns = {
   'users/user.route': 'users',
   'states/state.route': 'states',
+  'roles/role.route': 'roles',
+  'scopes/scope.route': 'scopes',
+  'auth/auth.route': 'auth',
 };
 
 const routes = requireModules(resolve(__dirname, '../modules'))(fns);

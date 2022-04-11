@@ -13,9 +13,7 @@ const ap = require('./ap.utils');
 /** @: asyncWrap :: handler -> req, res, next -> http request status answer */
 const asyncWrap = (handler) => async (req, res, next) => {
   const answer = await handler(req, res, next).catch((err) => {
-    const toReturn = { path: `${req.baseUrl}${req.path}`, err };
-
-    console.log({ err });
+    const toReturn = { path: `${req.baseUrl}${req.path}`, err: err.message };
 
     const wrapWithMaybeOk = compose(
       maybe,
