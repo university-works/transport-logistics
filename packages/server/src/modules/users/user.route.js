@@ -6,12 +6,16 @@ const userView = require('./user.view');
 
 const key = 'user';
 
+console.log({ userCtrl });
+
 const meta = {
   get: {
     '/count': userCtrl.count,
     '/log-action': userCtrl.logAction,
   },
-  post: {},
+  post: {
+    '/try-post': userCtrl.tryPost,
+  },
 };
 
 module.exports = captureRoutesMeta(userView, userRepository, key, meta);
