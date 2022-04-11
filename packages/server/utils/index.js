@@ -14,6 +14,9 @@ const fns = {
   'to-boolean.utils': 'toBoolean',
   'map-over.utils': 'mapOver',
   'wheater-object.utils': 'wheaterObject',
+  'create-error.utils': 'createError',
+  'seconds-to-hours.utils': 'secondsToHours',
+  'adjust-on-create-error.utils': 'adjustOnCreateError',
 };
 
 module.exports = requireModules('./')(fns);

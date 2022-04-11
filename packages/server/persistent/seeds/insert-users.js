@@ -29,6 +29,7 @@ exports.seed = async (knex) => {
     name: prop('name'),
     password: prop('password'),
     last_login: prop('last_login'),
+    email: prop('email'),
   });
 
   const mapTable = map(compose(apply, apUsers));
