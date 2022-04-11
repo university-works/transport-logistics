@@ -6,8 +6,6 @@ const userView = require('./user.view');
 
 const key = 'user';
 
-console.log({ userCtrl });
-
 const meta = {
   get: {
     '/count': userCtrl.count,
