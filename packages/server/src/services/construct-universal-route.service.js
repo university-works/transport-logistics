@@ -3,12 +3,11 @@ const { fns, cast } = require('@fp/common');
 
 const { asyncWrap, id, apEither } = require('../../utils/express/index'); // eslint-disable-line
 const { mapOver, wheaterObject } = require('../../utils/index');
+const { authVerify } = require('../guards/index');
 
 const { safeParse, safePropWithEither } = fns;
 const { either } = cast;
 const { left, right } = apEither;
-
-const authVerify = require('./auth-verify.service');
 
 /** @: universalRoute :: cache -> general route */
 const universalRoute = (cache = {}) => ({

@@ -13,7 +13,7 @@ const { separateJwtToken } = require('../../utils/index');
 
 const { toEitherSafe, either } = cast;
 
-const token = require('./token.service');
+const token = require('../services/token.service');
 
 /** @: authVerify :: req -> assoc user ctx */
 const authVerify = (req) => {
