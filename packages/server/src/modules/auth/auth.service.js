@@ -1,12 +1,31 @@
-const { curry } = require('ramda');
+const { cast } = require('@fp/common');
+const {
+  curry,
+  compose,
+  chain,
+  set,
+  lensProp,
+  prop,
+  identity,
+} = require('ramda');
 const {
   USER_USE_CASE,
 } = require('../../../errors/domain-specific/user.use-case');
+const {
+  AUTH_USE_CASE,
+} = require('../../../errors/domain-specific/auth.use-case');
 const { TENANT_ROLE } = require('../../../consts/tenant-roles.const');
 
-const { adjustOnCreateError, secondsToHours } = require('../../../utils/index');
+const {
+  adjustOnCreateError,
+  secondsToHours,
+  eitherFreeze,
+} = require('../../../utils/index');
+
 const { token, bcryptHash } = require('../../services/index');
 const { config } = require('../../../config/index');
+
+const { toEitherSafe, either } = cast;
 
 const roleService = require('../roles/role.service');
 const userService = require('../users/user.service');
@@ -18,6 +37,22 @@ const authService = curry((userService, bcryptHash, token, config) => {
 
   const getAndGenerateJwtRefreshToken = (payload) =>
     token.sign(payload, { refresh: true });
+
+  const captureTokens = async (user) => {
+    const accessToken = await getAndGenerateJwtAccessToken({
+      email: user.email,
+    });
+    const refreshToken = await getAndGenerateJwtRefreshToken({
+      email: user.email,
+    });
+
+    await userService.setCurrentRefreshTokenAndGetUser(user.id, refreshToken);
+
+    const expiresIn = secondsToHours(
+      config.get('JWT_ACCESS_TOKEN_EXPIRATION_TIME'),
+    );
+    return { accessToken, refreshToken, expiresIn: `${expiresIn}h` };
+  };
 
   const register = async (credentials) => {
     if (await userService.getByEmail(credentials.email)) {
@@ -46,34 +81,86 @@ const authService = curry((userService, bcryptHash, token, config) => {
     });
 
     const user = await userService.repository.getById({ id: created.id });
-    const accessToken = await getAndGenerateJwtAccessToken({
-      email: user.email,
+    return captureTokens(user);
+  };
+
+  const login = async (credentials) => {
+    const user = await userService.getByEmail(credentials.email);
+
+    if (!user) {
+      throw new Error(
+        adjustOnCreateError(
+          USER_USE_CASE.EMAIL_DOES_NOT_EXISTS,
+          credentials.email,
+        ),
+      );
+    }
+    if (
+      !(await bcryptHash.compareUserPassword(
+        credentials.password,
+        user.password,
+      ))
+    ) {
+      throw new Error(
+        adjustOnCreateError(
+          AUTH_USE_CASE.PASSWORD_IS_NOT_CORRECT,
+          credentials.password,
+        ),
+      );
+    }
+    return captureTokens(user);
+  };
+
+  const logout = async (credentials) => {
+    const user = await userService.repository.getBy({
+      condition: {
+        refresh_token: credentials.refreshToken,
+      },
     });
-    const refreshToken = await getAndGenerateJwtRefreshToken({
-      email: user.email,
+    await userService.repository.updateBy({
+      condition: { id: user.id },
+      data: { refresh_token: null },
+    });
+    return { userId: user.id };
+  };
+
+  const refreshAccessToken = async (payload) => {
+    const user = await userService.repository.getBy({
+      condition: {
+        refresh_token: payload.refreshToken,
+      },
     });
 
-    await userService.setCurrentRefreshTokenAndGetUser(user.id, refreshToken);
+    if (!user) {
+      throw new Error(
+        adjustOnCreateError(
+          AUTH_USE_CASE.REFRESH_TOKEN_DOES_NOT_EXISTS,
+          payload.refreshToken,
+        ),
+      );
+    }
 
-    const expiresIn = secondsToHours(
-      config.get('JWT_ACCESS_TOKEN_EXPIRATION_TIME'),
+    const generate = (email) => getAndGenerateJwtAccessToken({ email });
+
+    const onVerify = compose(token.verify, prop('refreshToken'));
+
+    const verify = compose(
+      chain(toEitherSafe(generate)),
+      toEitherSafe(onVerify(payload)),
     );
-    return { accessToken, refreshToken, expiresIn: `${expiresIn}h` };
-  };
 
-  const login = (body) => {
-    console.log({ body, message: 'login' });
-    return { body };
-  };
+    const left = () => {
+      throw new Error(
+        adjustOnCreateError(
+          AUTH_USE_CASE.INVALID_REFRESH_TOKEN,
+          payload.refreshToken,
+        ),
+      );
+    };
 
-  const logout = (body) => {
-    console.log({ body, message: 'logout' });
-    return body;
-  };
+    const right = (token) => set(lensProp('accessToken'), token, {});
 
-  const refreshAccessToken = (body) => {
-    console.log({ body, message: 'refresh' });
-    return { body };
+    return either(left, right, verify({ refresh: true }));
   };
 
   const methods = {
@@ -83,7 +170,9 @@ const authService = curry((userService, bcryptHash, token, config) => {
     refreshAccessToken,
   };
 
-  return Object.freeze(methods);
+  return eitherFreeze('methods can not be undefined')(methods);
 });
 
-module.exports = authService(userService, bcryptHash, token, config);
+const args = [userService, bcryptHash, token, config];
+
+module.exports = compose(chain(identity), authService)(...args);

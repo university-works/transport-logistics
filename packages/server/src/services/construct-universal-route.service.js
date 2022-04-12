@@ -8,6 +8,8 @@ const { safeParse, safePropWithEither } = fns;
 const { either } = cast;
 const { left, right } = apEither;
 
+const authVerify = require('./auth-verify.service');
+
 /** @: universalRoute :: cache -> general route */
 const universalRoute = (cache = {}) => ({
   /** @: route :: fn -> http request */
@@ -29,6 +31,8 @@ const universalRoute = (cache = {}) => ({
     read: (view, instance, ...middlewares) => [
       ...middlewares,
       asyncWrap(async (req) => {
+        const verify = authVerify(req);
+
         const query = prop('query');
         const eiParse = compose(safeParse, prop('filter'));
         const onRead = compose(eiParse, query);

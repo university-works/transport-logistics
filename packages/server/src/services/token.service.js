@@ -14,12 +14,23 @@ const jwtOptions = {
 };
 
 /** @: token -> always table fns */
-const token = {
-  /** @: sign :: data -> options -> string */
-  sign: curry((payload, option) => {
-    const params = option.access ? jwtOptions.access : jwtOptions.refresh;
-    return jwt.sign(payload, params.secret, { expiresIn: params.expiresIn });
-  }),
+const token = () => {
+  /** @: capture :: table -> params */
+  const capture = (option) =>
+    option.access ? jwtOptions.access : jwtOptions.refresh;
+
+  /** @: apJwt :: method -> payload -> options -> string */
+  const apJwt = curry((method, payload, option) => {
+    const params = capture(option);
+    return method(payload, params.secret, { expiresIn: params.expiresIn });
+  });
+
+  return {
+    /** @: sign :: data -> options -> string */
+    sign: apJwt(jwt.sign),
+    /** @: verify :: token -> options -> string */
+    verify: apJwt(jwt.verify),
+  };
 };
 
-module.exports = token;
+module.exports = token();

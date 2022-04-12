@@ -8,6 +8,7 @@ const fns = {
   'capture-routes-meta.service': 'captureRoutesMeta',
   'bcrypt-hash.service': 'bcryptHash',
   'token.service': 'token',
+  'auth-verify.service': 'authVerify',
 };
 
 module.exports = requireModules(__dirname)(fns);
