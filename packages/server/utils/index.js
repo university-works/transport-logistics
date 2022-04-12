@@ -17,6 +17,8 @@ const fns = {
   'create-error.utils': 'createError',
   'seconds-to-hours.utils': 'secondsToHours',
   'adjust-on-create-error.utils': 'adjustOnCreateError',
+  'safe-nth.utils': 'safeNth',
+  'separate-jwt-token.utils': 'separateJwtToken',
 };
 
 module.exports = requireModules('./')(fns);

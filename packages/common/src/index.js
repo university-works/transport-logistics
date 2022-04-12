@@ -46,6 +46,8 @@ const safePropWithMaybe = require('./safe-prop-maybe');
 const safePropWithEither = require('./safe-prop-either');
 const safeRead = require('./safe-read');
 
+const parseClaims = require('../commands/parse-jwt');
+
 const id = require('./internal/algebraic-types/identity/index');
 const ap = require('./internal/algebraic-types/applicative/index');
 const either = require('./internal/algebraic-types/either/index');
@@ -86,6 +88,10 @@ const fns = {
   safeRead,
 };
 
+const commands = {
+  parseClaims,
+};
+
 module.exports = {
   semigroup,
   monoid,
@@ -97,4 +103,5 @@ module.exports = {
   cast,
   convert,
   fns,
+  commands,
 };
