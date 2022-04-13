@@ -13,12 +13,6 @@ const receiver = (base) => {
         queue,
         async (message, ...last) => {
           await fn({ data: { content: message.content.toString(), queue } });
-          //
-          // console.log({
-          //   fn,
-          //   message: message.content.toString(),
-          //   // result: fn(message.content.toString()),
-          // });
 
           wrapLogger('info', `received message: ${message.content.toString()}`);
           return cb(null, message);
