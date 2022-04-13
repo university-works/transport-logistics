@@ -9,14 +9,17 @@ const {
   chain,
   identity,
 } = require('ramda');
+
 const { separateJwtToken } = require('../../utils/index');
 
 const { toEitherSafe, either } = cast;
 
 const token = require('../services/token.service');
+const { wrapBase } = require('./wrappers/index');
+const jwtStrategy = require('./jwt/jwt.strategy');
 
-/** @: authVerify :: req -> assoc user ctx */
-const authVerify = (req) => {
+/** @: authVerify :: userRepository -> req -> assoc user ctx */
+const authVerify = curry((userRepository, req) => {
   const getAuth = compose(prop('authorization'), prop('headers'));
   const payload = compose(chain(identity), separateJwtToken, getAuth);
 
@@ -33,9 +36,14 @@ const authVerify = (req) => {
     );
   };
 
-  const right = curry((req, user) => set(lensProp('user'), user, req));
+  const right = curry(async (req, user) => {
+    const found = await userRepository.getBy({
+      condition: { email: user.email },
+    });
+    return set(lensProp('user'), jwtStrategy(found).validate(user), req);
+  });
 
   return either(left, right(req), verify(req));
-};
+});
 
-module.exports = authVerify;
+module.exports = authVerify(wrapBase('users'));
