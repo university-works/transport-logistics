@@ -28,6 +28,7 @@ const {
 } = require('../../consts/index');
 
 const { wrapArgs, eitherFreeze } = require('../../utils/index');
+const { wrapLogger } = require('../../logger/index');
 
 /** @: baseRepository :: driver -> schema -> table -> table repository */
 const baseRepository = curry((knex, schema, tableName) => {
@@ -105,9 +106,10 @@ const baseRepository = curry((knex, schema, tableName) => {
     const created = head(vector);
 
     const toLog = ([id, action]) =>
-      console.log({
-        log: `new entry was created with id: ${id} and action: ${action}`,
-      });
+      wrapLogger(
+        'info',
+        `new entry was created with id: ${id} and action: ${action}`,
+      );
 
     const getIdAndItsLog = useWith(wrapArgs, [prop('id'), prop('create')]);
     const chainWith = compose(toLog, getIdAndItsLog);
@@ -139,8 +141,12 @@ const baseRepository = curry((knex, schema, tableName) => {
       .where(condition);
 
     const warn = propSatisfies((x) => x > 1, 'length');
+
     const toLog = () =>
-      console.log('BaseRepo.updateBy is designed to update a single record');
+      wrapLogger(
+        'info',
+        'BaseRepo.updateBy is designed to update a single record',
+      );
 
     toEither(
       `managed to found base records: ${JSON.stringify(condition)}`,

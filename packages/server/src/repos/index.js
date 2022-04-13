@@ -7,6 +7,7 @@ const fns = {
   'scope.repository': 'scopeRepository',
   'role-scope.repo': 'roleScopeRepository',
   'user-role.repo': 'userRoleRepository',
+  'scheduler-log.repository': 'schedulerLogRepository',
 };
 
 module.exports = requireModules(__dirname)(fns);
