@@ -1,16 +1,19 @@
 'use strict';
 
 const { cast, ap } = require('@fp/common');
-const { compose, curry, always, map } = require('ramda');
+const { compose, curry, always, map, prop, call } = require('ramda');
+
 const http = require('http');
 
 const { toEither } = cast;
 const { liftA2 } = ap;
 
 const app = require('./app');
-const { config } = require('../config/index');
 
-const onFail = (err) => console.log({ err });
+const { config } = require('../config/index');
+const { wrapLogger } = require('../logger/index');
+
+const onFail = compose(wrapLogger('warn'), prop('message'));
 
 const onSuccess = (app) => {
   const eitherPort = compose(
@@ -20,7 +23,7 @@ const onSuccess = (app) => {
 
   const listen = curry((port, server) => {
     const callback = always(`server is listening on port ${port}`);
-    return server.listen(port, compose(console.log, callback));
+    return server.listen(port, compose(wrapLogger('info'), callback));
   });
 
   const server = http.createServer(app);
@@ -30,6 +33,9 @@ const onSuccess = (app) => {
 
   const fnVector = [listen, server];
   const [, eiServer] = map(eiWrap)(fnVector);
+
+  const resolveAmqp = './shared/amqp/index';
+  const apAmqp = compose(call, require)(resolveAmqp);
 
   return liftA2(listen)(eiPort, eiServer);
 };

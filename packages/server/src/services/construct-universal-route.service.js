@@ -3,7 +3,9 @@ const { fns, cast } = require('@fp/common');
 
 const { asyncWrap, id, apEither } = require('../../utils/express/index'); // eslint-disable-line
 const { mapOver, wheaterObject } = require('../../utils/index');
-const { authVerify } = require('../guards/index');
+const { authVerify, checkRole } = require('../guards/index');
+
+const { TENANT_ROLES } = require('../../consts/tenant-roles.const');
 
 const { safeParse, safePropWithEither } = fns;
 const { either } = cast;
@@ -31,6 +33,7 @@ const universalRoute = (cache = {}) => ({
       ...middlewares,
       asyncWrap(async (req) => {
         const verify = await authVerify(req);
+        const role = await checkRole(TENANT_ROLES, verify.user);
 
         const query = prop('query');
         const eiParse = compose(safeParse, prop('filter'));
