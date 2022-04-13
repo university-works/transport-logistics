@@ -30,7 +30,7 @@ const universalRoute = (cache = {}) => ({
     read: (view, instance, ...middlewares) => [
       ...middlewares,
       asyncWrap(async (req) => {
-        const verify = authVerify(req);
+        const verify = await authVerify(req);
 
         const query = prop('query');
         const eiParse = compose(safeParse, prop('filter'));

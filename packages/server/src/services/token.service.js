@@ -1,28 +1,28 @@
 const jwt = require('jsonwebtoken');
 const { curry } = require('ramda');
-const { config } = require('../../config/index');
+const { jwtConfig } = require('../guards/jwt/index');
 
 const jwtOptions = {
-  access: {
-    secret: config.get('JWT_ACCESS_TOKEN_SECRET'),
-    expiresIn: `${config.get('JWT_ACCESS_TOKEN_EXPIRATION_TIME')}s`,
-  },
-  refresh: {
-    secret: config.get('JWT_REFRESH_TOKEN_SECRET'),
-    expiresIn: `${config.get('JWT_REFRESH_TOKEN_EXPIRATION_TIME')}s`,
-  },
+  access: jwtConfig(
+    'JWT_ACCESS_TOKEN_SECRET',
+    'JWT_ACCESS_TOKEN_EXPIRATION_TIME',
+  ),
+  refresh: jwtConfig(
+    'JWT_REFRESH_TOKEN_SECRET',
+    'JWT_REFRESH_TOKEN_EXPIRATION_TIME',
+  ),
 };
 
-/** @: token -> always table fns */
-const token = () => {
+/** @: token :: jwtOptions -> always table fns */
+const token = (jwtOptions) => {
   /** @: capture :: table -> params */
   const capture = (option) =>
     option.access ? jwtOptions.access : jwtOptions.refresh;
 
   /** @: apJwt :: method -> payload -> options -> string */
   const apJwt = curry((method, payload, option) => {
-    const params = capture(option);
-    return method(payload, params.secret, { expiresIn: params.expiresIn });
+    const { secret, signOptions } = capture(option);
+    return method(payload, secret, signOptions);
   });
 
   return {
@@ -33,4 +33,4 @@ const token = () => {
   };
 };
 
-module.exports = token();
+module.exports = token(jwtOptions);

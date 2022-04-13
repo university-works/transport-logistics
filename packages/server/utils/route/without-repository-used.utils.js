@@ -7,6 +7,4 @@ const { toEither } = cast;
 const withoutRepositoryUsed = (message) =>
   call(compose(toEither(message), identity));
 
-console.log({ withoutRepositoryUsed: withoutRepositoryUsed('auth') });
-
 module.exports = withoutRepositoryUsed;
