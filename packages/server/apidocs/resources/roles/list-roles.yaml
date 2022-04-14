@@ -1,0 +1,21 @@
+summary: List
+operationId: list-roles
+description: List all roles
+tags:
+- roles
+parameters:
+  - $ref: "../../common/parameters/query/limit.yaml"
+responses:
+  200:
+    description: A paged array of roles
+    headers:
+      x-next:
+        description: A link to the next page of responses
+        schema:
+          type: string
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/role.yaml"
+  default:
+    $ref: "../../common/responses/unexpected-error.yaml"

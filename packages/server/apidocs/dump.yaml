@@ -1,0 +1,756 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: transport-logistics
+  description: An express api for transport-logistics
+  termsOfService: 'http://example.com/terms/'
+  contact:
+    name: Api support
+    url: 'http://www.example.com/support'
+    email: support@example.com
+  license:
+    name: Apache 2.0
+    url: 'https://www.apache.org/licenses/LICENSE-2.0.html'
+servers:
+  - url: 'http://localhost:3000'
+    description: The local api server
+  - url: 'https://development.gigantic-server.com/v1'
+    description: The development api server
+tags:
+  - name: transport-logistics
+paths:
+  /auth/register:
+    post:
+      summary: Register new user
+      operationId: register-users
+      description: Register a user
+      tags:
+        - auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Register'
+      responses:
+        '200':
+          description: user register with success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegisterResponse'
+        '201':
+          $ref: '#/components/responses/NullResponse'
+        default:
+          $ref: '#/components/responses/UnexpectedError'
+  /auth/login:
+    post:
+      summary: Login new user
+      operationId: login-users
+      description: Login a user
+      tags:
+        - auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Login'
+      responses:
+        '200':
+          description: user login with success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+        '201':
+          $ref: '#/components/responses/NullResponse'
+        default:
+          $ref: '#/components/responses/UnexpectedError'
+  /auth/logout:
+    post:
+      summary: Logout new user
+      operationId: logout-users
+      description: Logout a user
+      tags:
+        - auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Logout'
+      responses:
+        '200':
+          description: user logout with success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LogoutResponse'
+        '201':
+          $ref: '#/components/responses/NullResponse'
+        default:
+          $ref: '#/components/responses/UnexpectedError'
+  /auth/refresh-access-token:
+    post:
+      summary: Refresh access token for user
+      operationId: refresh-access-token
+      description: Refresh token
+      tags:
+        - auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RefreshAccessToken'
+      responses:
+        '200':
+          description: user refresh access token with success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RefreshAccessTokenResponse'
+        '201':
+          $ref: '#/components/responses/NullResponse'
+        default:
+          $ref: '#/components/responses/UnexpectedError'
+  /users:
+    get:
+      summary: List
+      operationId: list-users
+      description: List all users
+      tags:
+        - users
+      parameters:
+        - $ref: '#/components/parameters/limit'
+      responses:
+        '200':
+          description: A paged array of users
+          headers:
+            x-next:
+              description: A link to the next page of responses
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        default:
+          $ref: '#/components/responses/UnexpectedError'
+    post:
+      summary: Create
+      operationId: create-users
+      description: Create a user
+      tags:
+        - users
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '201':
+          $ref: '#/components/responses/NullResponse'
+        default:
+          $ref: '#/components/responses/UnexpectedError'
+  '/users/{id}':
+    get:
+      summary: Detail
+      operationId: show-user-by-id
+      description: Info for a specific user
+      tags:
+        - users
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        default:
+          $ref: '#/components/responses/UnexpectedError'
+    put:
+      x-name: update-user
+      summary: Update a user
+      tags:
+        - users
+      parameters:
+        - $ref: '#/components/parameters/id'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '202':
+          description: An updated user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          $ref: '#/components/responses/InvalidParameter'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        default:
+          $ref: '#/components/responses/UnexpectedError'
+    delete:
+      x-name: delete-user
+      summary: Delete a user
+      tags:
+        - users
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '204':
+          description: user was deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          $ref: '#/components/responses/InvalidParameter'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        default:
+          $ref: '#/components/responses/UnexpectedError'
+  /states:
+    get:
+      summary: List
+      operationId: list-states
+      description: List all states
+      tags:
+        - states
+      parameters:
+        - $ref: '#/components/parameters/limit'
+      responses:
+        '200':
+          description: A paged array of states
+          headers:
+            x-next:
+              description: A link to the next page of responses
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/State'
+        default:
+          $ref: '#/components/responses/UnexpectedError'
+    post:
+      summary: Create
+      operationId: create-states
+      description: Create a state
+      tags:
+        - states
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/State'
+      responses:
+        '201':
+          $ref: '#/components/responses/NullResponse'
+        default:
+          $ref: '#/components/responses/UnexpectedError'
+  '/states/{id}':
+    get:
+      summary: Detail
+      operationId: show-state-by-id
+      description: Info for a specific state
+      tags:
+        - states
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/State'
+        default:
+          $ref: '#/components/responses/UnexpectedError'
+    put:
+      x-name: update-state
+      summary: Update a state
+      tags:
+        - states
+      parameters:
+        - $ref: '#/components/parameters/id'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/State'
+      responses:
+        '202':
+          description: An updated state
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/State'
+        '400':
+          $ref: '#/components/responses/InvalidParameter'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        default:
+          $ref: '#/components/responses/UnexpectedError'
+    delete:
+      x-name: delete-state
+      summary: Delete a state
+      tags:
+        - states
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '204':
+          description: state was deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/State'
+        '400':
+          $ref: '#/components/responses/InvalidParameter'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        default:
+          $ref: '#/components/responses/UnexpectedError'
+  /roles:
+    get:
+      summary: List
+      operationId: list-roles
+      description: List all roles
+      tags:
+        - roles
+      parameters:
+        - $ref: '#/components/parameters/limit'
+      responses:
+        '200':
+          description: A paged array of roles
+          headers:
+            x-next:
+              description: A link to the next page of responses
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Role'
+        default:
+          $ref: '#/components/responses/UnexpectedError'
+    post:
+      summary: Create
+      operationId: create-roles
+      description: Create a role
+      tags:
+        - roles
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Role'
+      responses:
+        '201':
+          $ref: '#/components/responses/NullResponse'
+        default:
+          $ref: '#/components/responses/UnexpectedError'
+  '/roles/{id}':
+    get:
+      summary: Detail
+      operationId: show-role-by-id
+      description: Info for a specific role
+      tags:
+        - roles
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Role'
+        default:
+          $ref: '#/components/responses/UnexpectedError'
+    put:
+      x-name: update-role
+      summary: Update a role
+      tags:
+        - roles
+      parameters:
+        - $ref: '#/components/parameters/id'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Role'
+      responses:
+        '202':
+          description: An updated role
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Role'
+        '400':
+          $ref: '#/components/responses/InvalidParameter'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        default:
+          $ref: '#/components/responses/UnexpectedError'
+    delete:
+      x-name: delete-role
+      summary: Delete a role
+      tags:
+        - roles
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '204':
+          description: role was deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Role'
+        '400':
+          $ref: '#/components/responses/InvalidParameter'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        default:
+          $ref: '#/components/responses/UnexpectedError'
+  /scopes:
+    get:
+      summary: List
+      operationId: list-scopes
+      description: List all scopes
+      tags:
+        - scopes
+      parameters:
+        - $ref: '#/components/parameters/limit'
+      responses:
+        '200':
+          description: A paged array of scopes
+          headers:
+            x-next:
+              description: A link to the next page of responses
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Scope'
+        default:
+          $ref: '#/components/responses/UnexpectedError'
+    post:
+      summary: Create
+      operationId: create-scopes
+      description: Create a scope
+      tags:
+        - scopes
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Scope'
+      responses:
+        '201':
+          $ref: '#/components/responses/NullResponse'
+        default:
+          $ref: '#/components/responses/UnexpectedError'
+  '/scopes/{id}':
+    get:
+      summary: Detail
+      operationId: show-scope-by-id
+      description: Info for a specific scope
+      tags:
+        - scopes
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Scope'
+        default:
+          $ref: '#/components/responses/UnexpectedError'
+    put:
+      x-name: update-scope
+      summary: Update a scope
+      tags:
+        - scopes
+      parameters:
+        - $ref: '#/components/parameters/id'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Scope'
+      responses:
+        '202':
+          description: An updated scope
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Scope'
+        '400':
+          $ref: '#/components/responses/InvalidParameter'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        default:
+          $ref: '#/components/responses/UnexpectedError'
+    delete:
+      x-name: delete-scope
+      summary: Delete a scope
+      tags:
+        - scopes
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '204':
+          description: scope was deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Scope'
+        '400':
+          $ref: '#/components/responses/InvalidParameter'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        default:
+          $ref: '#/components/responses/UnexpectedError'
+components:
+  parameters:
+    id:
+      name: id
+      in: path
+      required: true
+      description: The id of the resource to retrieve
+      schema:
+        type: string
+    limit:
+      name: limit
+      in: query
+      description: How many items to return at one time (max 100)
+      required: false
+      schema:
+        type: integer
+        format: int32
+  schemas:
+    User:
+      type: object
+      required:
+        - id
+        - name
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        email:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        last_login:
+          type: string
+        password:
+          type: string
+        refresh_token:
+          type: string
+        contact_id:
+          type: integer
+          format: int64
+    State:
+      type: object
+      required:
+        - id
+        - name
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    Role:
+      type: object
+      required:
+        - id
+        - code
+      properties:
+        id:
+          type: integer
+          format: int64
+        code:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    Scope:
+      type: object
+      required:
+        - id
+        - code
+      properties:
+        id:
+          type: integer
+          format: int64
+        code:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    Error:
+      type: object
+      required:
+        - path
+        - err
+      properties:
+        path:
+          type: string
+        err:
+          type: string
+    Register:
+      type: object
+      required:
+        - email
+        - password
+        - name
+        - contact_id
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+        name:
+          type: string
+        contact_id:
+          type: integer
+          format: int64
+    Login:
+      type: object
+      required:
+        - email
+        - password
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+    Logout:
+      type: object
+      required:
+        - refreshToken
+      properties:
+        refreshToken:
+          type: string
+    RefreshAccessToken:
+      type: object
+      required:
+        - refreshToken
+      properties:
+        refreshToken:
+          type: string
+    RegisterResponse:
+      type: object
+      required:
+        - accessToken
+        - refreshToken
+        - expiresIn
+      properties:
+        accessToken:
+          type: string
+        refreshToken:
+          type: string
+        expiresIn:
+          type: string
+    LoginResponse:
+      type: object
+      required:
+        - accessToken
+        - refreshToken
+        - expiresIn
+      properties:
+        accessToken:
+          type: string
+        refreshToken:
+          type: string
+        expiresIn:
+          type: string
+    LogoutResponse:
+      type: object
+      required:
+        - userId
+      properties:
+        userId:
+          type: integer
+          format: int64
+    RefreshAccessTokenResponse:
+      type: object
+      required:
+        - accessToken
+      properties:
+        accessToken:
+          type: string
+  responses:
+    UnexpectedError:
+      description: Unexpected error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NullResponse:
+      description: Null response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Forbidden:
+      description: Forbidden response
+    NotFound:
+      description: Not found response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InvalidParameter:
+      description: Invalid parameter error response
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+security:
+  - bearerAuth: []

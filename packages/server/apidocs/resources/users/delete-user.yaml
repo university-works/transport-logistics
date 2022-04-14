@@ -1,0 +1,21 @@
+x-name: delete-user
+summary: Delete a user
+tags:
+  - users
+parameters:
+  - $ref: "../../common/parameters/path/id.yaml"
+responses:
+  403:
+    $ref: "../../common/responses/forbidden-response.yaml"
+  204:
+    description: user was deleted
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/user.yaml"
+  404:
+    $ref: "../../common/responses/not-found-response.yaml"
+  400:
+    $ref: "../../common/responses/invalid-parameter-error.response.yaml"
+  default:
+    $ref: "../../common/responses/unexpected-error.yaml"

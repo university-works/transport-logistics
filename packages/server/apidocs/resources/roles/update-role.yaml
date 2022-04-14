@@ -1,0 +1,26 @@
+x-name: update-role
+summary: Update a role
+tags:
+  - roles
+parameters:
+  - $ref: "../../common/parameters/path/id.yaml"
+requestBody:
+  content:
+    application/json:
+      schema:
+        $ref: "../../schemas/role.yaml"
+responses:
+  403:
+    $ref: "../../common/responses/forbidden-response.yaml"
+  202:
+    description: An updated role
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/role.yaml"
+  404:
+    $ref: "../../common/responses/not-found-response.yaml"
+  400:
+    $ref: "../../common/responses/invalid-parameter-error.response.yaml"
+  default:
+    $ref: "../../common/responses/unexpected-error.yaml"

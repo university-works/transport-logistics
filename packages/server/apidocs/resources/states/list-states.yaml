@@ -1,0 +1,21 @@
+summary: List
+operationId: list-states
+description: List all states
+tags:
+- states
+parameters:
+  - $ref: "../../common/parameters/query/limit.yaml"
+responses:
+  200:
+    description: A paged array of states
+    headers:
+      x-next:
+        description: A link to the next page of responses
+        schema:
+          type: string
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/state.yaml"
+  default:
+    $ref: "../../common/responses/unexpected-error.yaml"

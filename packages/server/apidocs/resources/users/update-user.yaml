@@ -1,0 +1,26 @@
+x-name: update-user
+summary: Update a user
+tags:
+  - users
+parameters:
+  - $ref: "../../common/parameters/path/id.yaml"
+requestBody:
+  content:
+    application/json:
+      schema:
+        $ref: "../../schemas/user.yaml"
+responses:
+  403:
+    $ref: "../../common/responses/forbidden-response.yaml"
+  202:
+    description: An updated user
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/user.yaml"
+  404:
+    $ref: "../../common/responses/not-found-response.yaml"
+  400:
+    $ref: "../../common/responses/invalid-parameter-error.response.yaml"
+  default:
+    $ref: "../../common/responses/unexpected-error.yaml"

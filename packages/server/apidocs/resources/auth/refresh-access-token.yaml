@@ -1,0 +1,21 @@
+summary: Refresh access token for user
+operationId: refresh-access-token
+description: Refresh token
+tags:
+  - auth
+requestBody:
+  content:
+    application/json:
+      schema:
+        $ref: "../../schemas/refresh-access-token.yaml"
+responses:
+  200:
+    description: user refresh access token with success
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/refresh-access-token-response.yaml"
+  201:
+    $ref : "../../common/responses/null-response.yaml"
+  default:
+    $ref : "../../common/responses/unexpected-error.yaml"

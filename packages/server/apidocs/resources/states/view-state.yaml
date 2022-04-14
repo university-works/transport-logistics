@@ -1,0 +1,16 @@
+summary: Detail
+operationId: show-state-by-id
+description: Info for a specific state
+tags:
+  - states
+parameters:
+  - $ref: "../../common/parameters/path/id.yaml"
+responses:
+  200:
+    description: Expected response to a valid request
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/state.yaml"
+  default:
+    $ref: "../../common/responses/unexpected-error.yaml"

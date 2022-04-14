@@ -1,0 +1,4 @@
+- name: token
+  in: query
+  type: string
+  description: json web token

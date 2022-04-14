@@ -1,0 +1,35 @@
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: transport-logistics
+  description: An express api for transport-logistics
+  termsOfService: http://example.com/terms/
+  contact:
+    name: Api support
+    url: http://www.example.com/support
+    email: support@example.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+  - url: 'http://localhost:3000'
+    description: The local api server
+  - url: https://development.gigantic-server.com/v1
+    description: The development api server
+tags:
+  - name: transport-logistics
+paths:
+  $ref: ./resources/index.yaml
+components:
+  parameters:
+    $ref: "./common/parameters/index.yaml"
+  schemas:
+    $ref: "./schemas/index.yaml"
+  responses:
+    $ref: "./common/responses/index.yaml"
+  securitySchemes:
+    $ref: "./common/security/jwt.security.yaml"
+
+security:
+  - bearerAuth: []
+  

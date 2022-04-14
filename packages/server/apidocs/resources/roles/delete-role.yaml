@@ -1,0 +1,21 @@
+x-name: delete-role
+summary: Delete a role
+tags:
+  - roles
+parameters:
+  - $ref: "../../common/parameters/path/id.yaml"
+responses:
+  403:
+    $ref: "../../common/responses/forbidden-response.yaml"
+  204:
+    description: role was deleted
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/role.yaml"
+  404:
+    $ref: "../../common/responses/not-found-response.yaml"
+  400:
+    $ref: "../../common/responses/invalid-parameter-error.response.yaml"
+  default:
+    $ref: "../../common/responses/unexpected-error.yaml"

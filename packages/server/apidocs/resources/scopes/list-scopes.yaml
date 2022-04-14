@@ -1,0 +1,21 @@
+summary: List
+operationId: list-scopes
+description: List all scopes
+tags:
+- scopes
+parameters:
+  - $ref: "../../common/parameters/query/limit.yaml"
+responses:
+  200:
+    description: A paged array of scopes
+    headers:
+      x-next:
+        description: A link to the next page of responses
+        schema:
+          type: string
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/scope.yaml"
+  default:
+    $ref: "../../common/responses/unexpected-error.yaml"
