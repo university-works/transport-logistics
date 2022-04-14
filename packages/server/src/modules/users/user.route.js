@@ -11,9 +11,6 @@ const meta = {
     '/count': userCtrl.count,
     '/log-action': userCtrl.logAction,
   },
-  post: {
-    '/try-post': userCtrl.tryPost,
-  },
 };
 
 module.exports = captureRoutesMeta(userView, userRepository, key, meta);

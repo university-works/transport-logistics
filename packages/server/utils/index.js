@@ -9,7 +9,7 @@ const fns = {
   'get-or-else.utils': 'getOrElse',
   'is-empty.utils': 'isEmpty',
   'wrap-args.utils': 'wrapArgs',
-  'either-freeze': 'eitherFreeze',
+  'either-freeze.utils': 'eitherFreeze',
   'not-empty.utils': 'notEmpty',
   'to-boolean.utils': 'toBoolean',
   'map-over.utils': 'mapOver',

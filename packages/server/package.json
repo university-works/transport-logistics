@@ -7,7 +7,8 @@
     "log": "echo server with version: $version",
     "start:dev": "NODE_ENV=development nodemon src/server.js",
     "start:prod": "NODE_ENV=production node src/server.js",
-    "migrate": "yarn knex migrate:latest --knexfile persistent/knexfile.js"
+    "migrate": "yarn knex migrate:latest --knexfile persistent/knexfile.js",
+    "test": "NODE_ENV=development mocha \"test/**/*.spec.js\""
   },
   "dependencies": {
     "@fp/common": "^1.2.0",
@@ -24,5 +25,9 @@
     "pino": "^7.10.0",
     "pino-pretty": "^7.6.1",
     "ramda": "^0.28.0"
+  },
+  "devDependencies": {
+    "mocha": "^9.2.2",
+    "supertest": "^6.2.2"
   }
 }
