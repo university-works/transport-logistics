@@ -8,16 +8,6 @@ const meta = {
   onCall: ['count', 'logAction'],
 };
 
-const tryPost = (body) => {
-  console.log({ body });
-  return body;
-};
-
-const tryUpdate = (id, body) => {
-  console.log({ id, body });
-  return { id, body };
-};
-
 const userService = (repository) => {
   const general = captureFieldToMap(repository)('onCall');
 
