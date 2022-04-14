@@ -24,7 +24,9 @@
     "pg": "^8.7.3",
     "pino": "^7.10.0",
     "pino-pretty": "^7.6.1",
-    "ramda": "^0.28.0"
+    "ramda": "^0.28.0",
+    "swagger-ui-express": "^4.3.0",
+    "yamljs": "^0.3.0"
   },
   "devDependencies": {
     "mocha": "^9.2.2",
