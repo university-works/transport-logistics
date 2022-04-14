@@ -1,0 +1,10 @@
+UnexpectedError:
+  $ref: "./unexpected-error.yaml"
+NullResponse:
+  $ref: "./null-response.yaml"
+Forbidden:
+  $ref: "./forbidden-response.yaml"
+NotFound:
+  $ref: "./not-found-response.yaml"
+InvalidParameter:
+  $ref: "./invalid-parameter-error.response.yaml"

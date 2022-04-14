@@ -1,0 +1,16 @@
+summary: Detail
+operationId: show-scope-by-id
+description: Info for a specific scope
+tags:
+  - scopes
+parameters:
+  - $ref: "../../common/parameters/path/id.yaml"
+responses:
+  200:
+    description: Expected response to a valid request
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/scope.yaml"
+  default:
+    $ref: "../../common/responses/unexpected-error.yaml"

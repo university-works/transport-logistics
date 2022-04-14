@@ -7,6 +7,7 @@ const fns = {
   'express/ap.utils': 'ap',
   'express/id.utils': 'id',
   'express/either-ap.utils': 'apEither',
+  'express/app-use-as-it-is.utils': 'appUseAsItIs',
 };
 
 module.exports = requireModules('./')(fns);

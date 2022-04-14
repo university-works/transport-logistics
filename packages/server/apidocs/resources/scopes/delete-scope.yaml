@@ -1,0 +1,21 @@
+x-name: delete-scope
+summary: Delete a scope
+tags:
+  - scopes
+parameters:
+  - $ref: "../../common/parameters/path/id.yaml"
+responses:
+  403:
+    $ref: "../../common/responses/forbidden-response.yaml"
+  204:
+    description: scope was deleted
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/scope.yaml"
+  404:
+    $ref: "../../common/responses/not-found-response.yaml"
+  400:
+    $ref: "../../common/responses/invalid-parameter-error.response.yaml"
+  default:
+    $ref: "../../common/responses/unexpected-error.yaml"

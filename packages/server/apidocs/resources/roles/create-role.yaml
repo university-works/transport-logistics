@@ -1,0 +1,15 @@
+summary: Create
+operationId: create-roles
+description: Create a role
+tags:
+  - roles
+requestBody:
+  content:
+    application/json:
+      schema:
+        $ref: "../../schemas/role.yaml"
+responses:
+  201:
+    $ref : "../../common/responses/null-response.yaml"
+  default:
+    $ref : "../../common/responses/unexpected-error.yaml"

@@ -1,0 +1,26 @@
+x-name: update-scope
+summary: Update a scope
+tags:
+  - scopes
+parameters:
+  - $ref: "../../common/parameters/path/id.yaml"
+requestBody:
+  content:
+    application/json:
+      schema:
+        $ref: "../../schemas/scope.yaml"
+responses:
+  403:
+    $ref: "../../common/responses/forbidden-response.yaml"
+  202:
+    description: An updated scope
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/scope.yaml"
+  404:
+    $ref: "../../common/responses/not-found-response.yaml"
+  400:
+    $ref: "../../common/responses/invalid-parameter-error.response.yaml"
+  default:
+    $ref: "../../common/responses/unexpected-error.yaml"

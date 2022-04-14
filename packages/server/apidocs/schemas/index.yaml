@@ -1,0 +1,28 @@
+User:
+  $ref: "./user.yaml"
+State:
+  $ref: "./state.yaml"
+Role:
+  $ref: "./role.yaml"
+Scope:
+  $ref: "./scope.yaml"
+Error:
+  $ref: "./error.yaml"
+
+Register:
+  $ref: "./register.yaml"
+Login:
+  $ref: "./login.yaml"
+Logout:
+  $ref: "./logout.yaml"
+RefreshAccessToken:
+  $ref: "./refresh-access-token.yaml"
+
+RegisterResponse:
+  $ref: "./register-response.yaml"
+LoginResponse:
+  $ref: "./login-response.yaml"
+LogoutResponse:
+  $ref: "./logout-response.yaml"
+RefreshAccessTokenResponse:
+  $ref: "./refresh-access-token-response.yaml"

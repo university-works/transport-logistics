@@ -1,0 +1,65 @@
+/auth/register:
+  post:
+    $ref: ./auth/register.yaml
+/auth/login:
+  post:
+    $ref: ./auth/login.yaml
+/auth/logout:
+  post:
+    $ref: ./auth/logout.yaml
+/auth/refresh-access-token:
+  post:
+    $ref: ./auth/refresh-access-token.yaml
+
+/users:
+  get:
+    $ref: ./users/list-users.yaml
+  post:
+    $ref: ./users/create-user.yaml
+/users/{id}:
+  get:
+    $ref: ./users/view-user.yaml
+  put:
+    $ref: ./users/update-user.yaml
+  delete:
+    $ref: ./users/delete-user.yaml
+
+/states:
+  get:
+    $ref: ./states/list-states.yaml
+  post:
+    $ref: ./states/create-state.yaml
+/states/{id}:
+  get:
+    $ref: ./states/view-state.yaml
+  put:
+    $ref: ./states/update-state.yaml
+  delete:
+    $ref: ./states/delete-state.yaml
+
+/roles:
+  get:
+    $ref: ./roles/list-roles.yaml
+  post:
+    $ref: ./roles/create-role.yaml
+/roles/{id}:
+  get:
+    $ref: ./roles/view-role.yaml
+  put:
+    $ref: ./roles/update-role.yaml
+  delete:
+    $ref: ./roles/delete-role.yaml
+
+/scopes:
+  get:
+    $ref: ./scopes/list-scopes.yaml
+  post:
+    $ref: ./scopes/create-scope.yaml
+/scopes/{id}:
+  get:
+    $ref: ./scopes/view-scope.yaml
+  put:
+    $ref: ./scopes/update-scope.yaml
+  delete:
+    $ref: ./scopes/delete-scope.yaml
+

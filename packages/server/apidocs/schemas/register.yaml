@@ -1,0 +1,16 @@
+type: object
+required:
+ - email
+ - password
+ - name
+ - contact_id
+properties:
+  email:
+    type: string
+  password:
+    type: string
+  name:
+    type: string
+  contact_id:
+    type: integer
+    format: int64

@@ -1,0 +1,7 @@
+# path
+id:
+  $ref: './path/id.yaml'
+
+# limit
+limit:
+  $ref: './query/limit.yaml'

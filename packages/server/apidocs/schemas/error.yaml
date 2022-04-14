@@ -1,0 +1,9 @@
+type: object
+required:
+  - path
+  - err
+properties:
+  path:
+    type: string
+  err:
+    type: string

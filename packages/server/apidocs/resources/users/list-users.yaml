@@ -1,0 +1,21 @@
+summary: List
+operationId: list-users
+description: List all users
+tags:
+- users
+parameters:
+  - $ref: "../../common/parameters/query/limit.yaml"
+responses:
+  200:
+    description: A paged array of users
+    headers:
+      x-next:
+        description: A link to the next page of responses
+        schema:
+          type: string
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/user.yaml"
+  default:
+    $ref: "../../common/responses/unexpected-error.yaml"
