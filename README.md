@@ -2,7 +2,7 @@
 
 ## Table of contents
 
-- [General desciption](#monorepository-general-desciption)
+- [General description](#monorepository-general-desciption)
   - [Table of contents](#table-of-contents)
     - [Other topics](#other-topics)
   - [Development process](#development-process)
@@ -13,7 +13,7 @@
     - [Documentation](#documentation)
   - [Project structure](#project-structure)
 
-## General Desciption
+## General Description
 
 Logistics comprises all tasks for planning, controlling, providing and optimizing processes along the value chain. Transport logistics comprises the complete approach to all processes in logistics that are necessary to conduct a transport.
 

@@ -2,7 +2,7 @@
 
 ## Table of contents
 
-- [General desciption](#general-desciption)
+- [General description](#general-desciption)
   - [Table of contents](#table-of-contents)
     - [Other topics](#other-topics)
   - [Development process](#development-process)
@@ -10,7 +10,7 @@
     - [Documentation](#documentation)
   - [Project structure](#project-structure)
 
-## General Desciption
+## General Description
 
 The library is mostly written according to the rules and conventions of the functional paradigm using algebraic data types, includes commonly used functions and its safe variants. A practical functional library for common functions
 
