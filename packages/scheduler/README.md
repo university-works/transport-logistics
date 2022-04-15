@@ -2,7 +2,7 @@
 
 ## Table of contents
 
-- [General desciption](#general-desciption)
+- [General description](#general-desciption)
   - [Table of contents](#table-of-contents)
     - [Other topics](#other-topics)
   - [Development process](#development-process)
@@ -10,7 +10,7 @@
     - [Documentation](#documentation)
   - [Project structure](#project-structure)
 
-## General Desciption
+## General Description
 
 The module that is responsible for sending messages of various types to the queue of events and reminders, as well as letters for the selected subject area
 

@@ -2,7 +2,7 @@
 
 ## Table of contents
 
-- [General desciption](#general-desciption)
+- [General description](#general-desciption)
   - [Table of contents](#table-of-contents)
     - [Other topics](#other-topics)
   - [Development process](#development-process)
@@ -10,7 +10,7 @@
     - [Documentation](#documentation)
   - [Project structure](#project-structure)
 
-## General Desciption
+## General Description
 
 The server that handles requests, domain modeling located here also implemented part of the business logic of the selected subject area, namely cargo transportation
 
