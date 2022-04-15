@@ -2,13 +2,15 @@
   "name": "@fp/server",
   "version": "1.2.0",
   "main": "index.js",
+  "types": "types/index.d.ts",
   "license": "MIT",
   "scripts": {
     "log": "echo server with version: $version",
     "start:dev": "NODE_ENV=development nodemon src/server.js",
     "start:prod": "NODE_ENV=production node src/server.js",
     "migrate": "yarn knex migrate:latest --knexfile persistent/knexfile.js",
-    "test": "NODE_ENV=development mocha \"test/**/*.spec.js\""
+    "test": "NODE_ENV=development mocha \"test/**/*.spec.js\"",
+    "types": "tsc -p types/tsconfig.json"
   },
   "dependencies": {
     "@fp/common": "^1.2.0",
@@ -29,7 +31,9 @@
     "yamljs": "^0.3.0"
   },
   "devDependencies": {
+    "@types/node": "^17.0.24",
     "mocha": "^9.2.2",
-    "supertest": "^6.2.2"
+    "supertest": "^6.2.2",
+    "typescript": "^4.6.3"
   }
 }
